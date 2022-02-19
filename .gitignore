@@ -1,0 +1,7 @@
+node_modules
+reports
+target
+target-dev
+target-demo
+.idea
+.DS_Store

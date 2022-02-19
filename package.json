@@ -1,0 +1,21 @@
+{
+    "name": "pepe_project",
+    "version": "0.0.1",
+    "description": "My own Storybook with monkaS and omegaLul",
+    "main": "index.js",
+    "scripts": {
+        "start": "echo \"Error: no start specified\" && exit 1",
+        "build": "echo \"Error: no build specified\" && exit 1",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sleonia/pepe_project.git"
+    },
+    "author": "nikita.dontsov@yahoo.com",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sleonia/pepe_project/issues"
+    },
+    "homepage": "https://github.com/sleonia/pepe_project#readme"
+}
