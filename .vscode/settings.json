@@ -1,7 +1,0 @@
-{
-    "deno.enable": true,
-    "deno.lint": true,
-    "deno.unstable": true,
-    "deno.importMap": "./dpm_imports.json",
-    "deno.config": "./tsconfig.json"
-}
