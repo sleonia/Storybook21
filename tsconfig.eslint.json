@@ -4,10 +4,10 @@
         "src/**/*",
         "stub/**/*",
         "cypress/**/*",
-        "@types/**/*",
-        "bin/**/*"
+        "@types/**/*"
     ],
     "exclude": [
+        "bin/**/*",
         "**/node_modules/**/*",
         "core/**/*",
         "esm/**/*",

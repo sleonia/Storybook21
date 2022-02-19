@@ -4,7 +4,7 @@
     "description": "My own Storybook with monkaS and omegaLul",
     "main": "./bin/index.ts",
     "scripts": {
-        "start": "deno run ./bin/index.ts",
+        "start": "deno run --allow-read --allow-net --import-map=dpm_imports.json ./bin/server.ts",
         "build": "echo \"Error: no build specified\" && exit 1",
         "test": "echo \"Error: no test specified\" && exit 1",
         "postinstall": "ts-node ./bin/postinstall.mjs"
@@ -23,6 +23,8 @@
         "@sbol/eslint-config": "3.1.4",
         "@sbol/stylelint-config": "2.0.0",
         "@types/node": "^17.0.18",
+        "@types/react": "^17.0.39",
+        "@types/react-dom": "^17.0.11",
         "@typescript-eslint/parser": "^5.12.0",
         "eslint": "8.9.0",
         "stylelint": "14.5.1",
@@ -30,6 +32,11 @@
         "typescript": "^4.5.5"
     },
     "dependencies": {
-        "chalk": "^5.0.0"
+        "@vitejs/plugin-react": "^1.2.0",
+        "chalk": "^5.0.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "vite": "^2.8.4",
+        "vite-plugin-node": "0.0.17"
     }
 }

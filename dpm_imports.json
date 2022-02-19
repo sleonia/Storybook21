@@ -1,0 +1,7 @@
+{
+    "imports": {
+        "fmt/": "https://deno.land/std@0.92.0/fmt/",
+        "opine/": "https://deno.land/x/opine@2.1.1/",
+        "node/": "https://deno.land/std@0.126.0/node/"
+    }
+}
