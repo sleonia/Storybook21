@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "allowJs": false,
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "strict": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "lib": [
+            "es2021",
+            "dom",
+            "dom.iterable"
+        ],
+        "experimentalDecorators": false,
+        "typeRoots": [
+            "node_modules/@types",
+            "@types"
+        ],
+        "resolveJsonModule": true
+    },
+    "include": [
+        "src/**/*",
+        "bin/**/*",
+        "@types/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.tsx"
+    ],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "esnext"
+        }
+    }
+}

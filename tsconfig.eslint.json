@@ -1,0 +1,19 @@
+{
+    "extends": "./tsconfig.json",
+    "include": [
+        "src/**/*",
+        "stub/**/*",
+        "cypress/**/*",
+        "@types/**/*",
+        "bin/**/*"
+    ],
+    "exclude": [
+        "**/node_modules/**/*",
+        "core/**/*",
+        "esm/**/*",
+        "target/**/*",
+        "target-dev/**/*",
+        "reports/**/*",
+        ".eslintrc.js"
+    ]
+}
