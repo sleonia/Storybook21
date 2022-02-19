@@ -1,8 +1,10 @@
 import { opine, OpineResponse } from 'opine/mod.ts'
-import { createRequire } from 'node/module.ts'
+import colors from 'colors/safe'
 
-console.log(createRequire)
+const { log } = console
 
+
+colors.enable();
 const app = opine()
 
 app.get('/', (_: unknown, res: OpineResponse) => {
@@ -10,5 +12,5 @@ app.get('/', (_: unknown, res: OpineResponse) => {
 })
 
 app.listen(8080, () => {
-    console.log('hello world on http://localhost:8080')
+    log(colors.random('Hello world on 🚀 http://localhost:8080 🚀'))
 })
