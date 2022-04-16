@@ -1,16 +1,37 @@
+import path from 'path'
 
-import express from 'express';
+import webpack from 'webpack'
+import WebpackDevServer from 'webpack-dev-server'
+import type { Configuration } from 'webpack-dev-server'
+import program from 'commander'
 
-const app = express();
+process.env.NODE_ENV = 'development'
 
-app.get('/', (req, res) => {
-    res.send('change me to see updates, express!!');
-});
+import { config } from './base'
 
-// @ts-ignore
-if (import.meta.env.PROD) {
-    app.listen(3000);
-    console.log('listening on http://localhost:3000/');
+export const runServer = (): void => {
+    const compiler = webpack(config)
+    // program.option('--port [type]', 'Port').parse(process.argv)
+
+    const devPort = 8080
+    // const devPort = program.opts().port || 8080
+
+    const devServerOptions: Configuration = {
+        static: {
+            directory: path.join(process.cwd(), 'dist')
+        },
+        hot: true,
+        allowedHosts: 'localhost',
+        port: devPort,
+        client: {
+            logging: 'error'
+        }
+    }
+
+    const devServer = new WebpackDevServer(devServerOptions, compiler)
+
+    devServer.startCallback(() => {
+        console.log(`Server listening on port ${devPort}`)
+    })
+
 }
-
-export const viteNodeApp = app;
