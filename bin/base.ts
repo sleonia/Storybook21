@@ -1,5 +1,6 @@
 import type { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import WebpackNotifierPlugin from 'webpack-notifier'
 
 export const createBaseConfig = () => {}
 

@@ -5,8 +5,7 @@
   "bin": {
     "21storybook": "./bin/storybook.ts"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sleonia/pepe_project.git"
@@ -26,7 +25,8 @@
     "eslint": "8.9.0",
     "stylelint": "14.5.1",
     "ts-node": "^10.5.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "webpack-notifier": "^1.15.0"
   },
   "dependencies": {
     "commander": "^9.2.0",
