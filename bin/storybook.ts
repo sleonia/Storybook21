@@ -1,6 +1,5 @@
 #!/usr/bin/env ts-node
 
-import { runServer } from './server'
+import { program } from './commander'
 
-process.env.NODE_ENV = 'development'
-runServer()
+program.parse()

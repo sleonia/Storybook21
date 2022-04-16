@@ -1,6 +1,8 @@
 import type { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+export const createConfig = () => {}
+
 const config: Configuration = {
     mode: 'development',
     entry: ['./src/index.tsx'],

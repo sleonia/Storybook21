@@ -1,33 +1,58 @@
-import { Command } from 'commander';
+import { Command, createOption } from 'commander';
 
 import { version } from '../package.json'
+import { runServer } from './server'
+import type { CommanderStartOptions } from './types'
+import { WebpackMode } from './types'
+
+const DEFAULT_PORT = 4242
 
 const program = new Command();
+
+const configOption = createOption('--config <string>', 'Path to config file')
+const modeOption = createOption('--mode <string>', 'Mode for run app')
+const portOption = createOption('--port <type>', 'Port for dev server')
+
+const parseOptions = ({
+    configPath,
+    mode,
+    port
+}: Record<string, string | undefined>
+): Required<CommanderStartOptions> => ({
+    configPath,
+    mode: mode === WebpackMode.Development || mode === WebpackMode.Production ? mode : WebpackMode.Development,
+    port: Number(port) || DEFAULT_PORT
+})
 
 program
     .name('🌈 21 Storybook 🌈')
     .description('Open source tool for developing UI components in isolation for React')
-    .version(version)
+    .version(version);
 
 // TODO хочу, чтобы он сам генерил конфиг и все нужные штуки
 program
-    .command('init')
+    .command('init');
 
-    program
+program
     .command('start')
     .description('run app in dev mode 🚀')
-    .requiredOption('--config <path>', 'Path to config file')
-    .option('--mode', 'Mode for run app', 'development')
-    .option('--port', 'Port for dev server', '4242')
+    .addOption(configOption)
+    .addOption(modeOption)
+    .addOption(portOption)
+    .action((str) => {
+        const options = parseOptions(str)
+        runServer(options)
+    })
 
-    program
+program
     .command('build')
     .description('build app 🛠️')
-    .requiredOption('--config <path>', 'Path to config file')
-    .option('--mode', 'Mode for run app', 'production')
+    .addOption(modeOption)
+    .addOption(configOption)
+    .action((str) => {
+        parseOptions(str)
+    })
 
 program.showHelpAfterError('(Try --help for show information)');
 
-const args = program.parse(process.argv).args
-
-export { program, args }
+export { program }

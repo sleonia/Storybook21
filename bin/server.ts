@@ -3,33 +3,36 @@ import path from 'path'
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 import type { Configuration } from 'webpack-dev-server'
-import program from 'commander'
 
 import { config } from './base'
+import type { CommanderStartOptions } from './types'
 
-export const runServer = (): void => {
+/** Path where webpack find files after compile */
+const VIRTUAL_DIR = path.join(process.cwd(), 'dist')
+
+export const runServer = ({
+    configPath,
+    mode,
+    port
+}: CommanderStartOptions): void => {
     const compiler = webpack(config)
-    // program.option('--port [type]', 'Port').parse(process.argv)
-
-    const devPort = 8080
-    // const devPort = program.opts().port || 8080
 
     const devServerOptions: Configuration = {
         static: {
-            directory: path.join(process.cwd(), 'dist')
+            directory: VIRTUAL_DIR
         },
         hot: true,
         allowedHosts: 'localhost',
-        port: devPort,
+        port,
         client: {
-            logging: 'error'
+            logging: 'error',
+            progress: true
         }
     }
 
     const devServer = new WebpackDevServer(devServerOptions, compiler)
 
     devServer.startCallback(() => {
-        console.log(`Server listening on port ${devPort}`)
+        console.log(`💥 Server listening on port ${port} 💥`)
     })
-
 }
