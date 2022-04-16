@@ -1,6 +1,6 @@
 {
   "name": "pepe_project",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "My own Storybook with monkaS and omegaLul",
   "bin": {
     "21storybook": "./bin/storybook.ts"
