@@ -2,6 +2,7 @@ import { Command, createOption } from 'commander';
 
 import { version } from '../package.json'
 import { runServer } from './server'
+import { runBuild } from './build'
 import type { CommanderStartOptions } from './types'
 import { WebpackMode } from './types'
 
@@ -50,7 +51,8 @@ program
     .addOption(modeOption)
     .addOption(configOption)
     .action((str) => {
-        parseOptions(str)
+        const options = parseOptions(str)
+        runBuild(options)
     })
 
 program.showHelpAfterError('(Try --help for show information)');

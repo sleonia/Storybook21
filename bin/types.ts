@@ -7,7 +7,7 @@ export enum WebpackMode {
 
 export type CommanderStartOptions = {
     configPath?: string
-    mode?: "development" | "production"
+    mode?: Exclude<Configuration['mode'], 'none'>
     port?: number
 }
 

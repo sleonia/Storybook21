@@ -13,7 +13,8 @@ export const runBuild = ({
     port
 }: CommanderStartOptions): void => {
     /** make dynamic reguire for load config file */
-    const configProject = require(`${process.cwd()}/${configPath}`)
+    // TODO uncomment
+    // const configProject = require(`${process.cwd()}/${configPath}`)
     const baseConfig = createBaseConfig(configPath, mode)
 
     process.env.NODE_ENV = 'production'
@@ -22,7 +23,9 @@ export const runBuild = ({
     })(
         baseConfig, {
         output: {
-            path: resolve(process.cwd(), configProject.output || DIST)
+            path: resolve(process.cwd(), DIST)
+            // TODO uncomment
+            // path: resolve(process.cwd(), configProject.output || DIST)
         },
 
         devtool: void 0,

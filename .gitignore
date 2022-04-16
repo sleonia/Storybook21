@@ -6,3 +6,4 @@ target-demo
 .idea
 .DS_Store
 .vscode
+dist

@@ -42,11 +42,10 @@ export const runServer = async ({
     baseConfig.plugins.push(
         /** Added plugin here because only here i know free port */
         new WebpackNotifierPlugin({
-            title: `${host}} 🦊`,
+            title: `${host} 🦊`,
             emoji: true
         })
     )
-
 
     console.log(`💥 Server listening on ${host} 💥`)
 

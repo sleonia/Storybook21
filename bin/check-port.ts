@@ -1,4 +1,3 @@
-
 import inquirer from 'inquirer';
 
 const getQuestion = (port: number) => ({
