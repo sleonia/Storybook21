@@ -1,30 +1,18 @@
 import type { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import WebpackNotifierPlugin from 'webpack-notifier'
 
-export const createBaseConfig = () => {}
+import config from '../webpack.config'
 
-const baseConfig: Configuration = {
-    mode: 'development',
-    entry: ['./src/index.tsx'],
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx|tsx|ts)$/,
-                loader: 'esbuild-loader',
-                options: {
-                    loader: 'tsx',
-                    target: 'es2015'
-                }
-            },
+export const createBaseConfig = (
+    configPath: string,
+    mode: Exclude<Configuration['mode'], 'none'>
+): Configuration => {
+    return ({
+        ...config,
+        mode,
+        plugins: [
+            new HtmlWebpackPlugin({ template: './src/template.html' })
         ],
-    },
-    plugins: [
-        new HtmlWebpackPlugin({ template: './bin/config/template.html' })
-    ],
-    resolve: {
-        extensions: ['.jsx', '.js', '.tsx', '.ts', '.css', '.json'],
-    }
+    });
 }
 
-export { baseConfig }

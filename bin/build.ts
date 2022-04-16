@@ -2,8 +2,9 @@ import { resolve } from 'path'
 
 import webpack from 'webpack'
 import { mergeWithCustomize, customizeObject } from 'webpack-merge'
+import { DIST } from '../constants'
 
-import { baseConfig } from './base'
+import { createBaseConfig } from './base'
 import type { CommanderStartOptions } from './types'
 
 export const runBuild = ({
@@ -13,6 +14,7 @@ export const runBuild = ({
 }: CommanderStartOptions): void => {
     /** make dynamic reguire for load config file */
     const configProject = require(`${process.cwd()}/${configPath}`)
+    const baseConfig = createBaseConfig(configPath, mode)
 
     process.env.NODE_ENV = 'production'
     const config = mergeWithCustomize({
@@ -20,7 +22,7 @@ export const runBuild = ({
     })(
         baseConfig, {
         output: {
-            path: resolve(process.cwd(), configProject.output || 'dist')
+            path: resolve(process.cwd(), configProject.output || DIST)
         },
 
         devtool: void 0,

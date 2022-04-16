@@ -1,3 +1,4 @@
+import { DIST } from './../constants';
 import { checkPort } from './check-port';
 import path from 'path'
 
@@ -6,11 +7,11 @@ import WebpackNotifierPlugin from 'webpack-notifier'
 import WebpackDevServer from 'webpack-dev-server'
 import type { Configuration } from 'webpack-dev-server'
 
-import { baseConfig } from './base'
+import { createBaseConfig } from './base'
 import type { CommanderStartOptions } from './types'
 
 /** Path where webpack find files after compile */
-const VIRTUAL_DIR = path.join(process.cwd(), 'dist')
+const VIRTUAL_DIR = path.join(process.cwd(), DIST)
 
 export const runServer = async ({
     configPath,
@@ -19,6 +20,7 @@ export const runServer = async ({
 }: CommanderStartOptions
 ): Promise<void> => {
     const freePort = await checkPort(port)
+    const baseConfig = createBaseConfig(configPath, mode)
 
     const devServerOptions: Configuration = {
         static: {
@@ -35,15 +37,19 @@ export const runServer = async ({
         watchFiles: ['src/**//\.(js|jsx|tsx|ts)$/']
     }
 
+    const host = `http://${devServerOptions.allowedHosts}:${freePort}`
+
     baseConfig.plugins.push(
         /** Added plugin here because only here i know free port */
-        new WebpackNotifierPlugin({ title: `http://${devServerOptions.host}:${freePort} 🥳`, emoji: true })
+        new WebpackNotifierPlugin({
+            title: `${host}} 🦊`,
+            emoji: true
+        })
     )
 
+
+    console.log(`💥 Server listening on ${host} 💥`)
+
     const compiler = webpack(baseConfig)
-
-    console.log(`💥 Server listening on port ${freePort} 💥`)
-    const devServer = new WebpackDevServer(devServerOptions, compiler)
-
-    devServer.start()
+    new WebpackDevServer(devServerOptions, compiler).start()
 }
