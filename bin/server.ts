@@ -4,7 +4,7 @@ import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 import type { Configuration } from 'webpack-dev-server'
 
-import { config } from './base'
+import { baseConfig } from './base'
 import type { CommanderStartOptions } from './types'
 
 /** Path where webpack find files after compile */
@@ -15,7 +15,9 @@ export const runServer = ({
     mode,
     port
 }: CommanderStartOptions): void => {
-    const compiler = webpack(config)
+    const compiler = webpack(baseConfig)
+
+    
 
     const devServerOptions: Configuration = {
         static: {
