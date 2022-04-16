@@ -2,6 +2,7 @@ import { resolve } from 'path'
 
 import webpack from 'webpack'
 import { mergeWithCustomize, customizeObject } from 'webpack-merge'
+import WebpackNotifierPlugin from 'webpack-notifier'
 import { DIST } from '../constants'
 
 import { createBaseConfig } from './base'
@@ -16,6 +17,13 @@ export const runBuild = ({
     // TODO uncomment
     // const configProject = require(`${process.cwd()}/${configPath}`)
     const baseConfig = createBaseConfig(configPath, mode)
+    baseConfig.plugins.push(
+        /** Added plugin here because only here i know free port */
+        new WebpackNotifierPlugin({
+            title: `Ready 🦊`,
+            emoji: true
+        })
+    )
 
     process.env.NODE_ENV = 'production'
     const config = mergeWithCustomize({

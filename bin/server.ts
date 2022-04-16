@@ -3,7 +3,6 @@ import { checkPort } from './check-port';
 import path from 'path'
 
 import webpack from 'webpack'
-import WebpackNotifierPlugin from 'webpack-notifier'
 import WebpackDevServer from 'webpack-dev-server'
 import type { Configuration } from 'webpack-dev-server'
 
@@ -38,14 +37,6 @@ export const runServer = async ({
     }
 
     const host = `http://${devServerOptions.allowedHosts}:${freePort}`
-
-    baseConfig.plugins.push(
-        /** Added plugin here because only here i know free port */
-        new WebpackNotifierPlugin({
-            title: `${host} 🦊`,
-            emoji: true
-        })
-    )
 
     console.log(`💥 Server listening on ${host} 💥`)
 
