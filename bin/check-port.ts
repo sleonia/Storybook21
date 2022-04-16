@@ -8,8 +8,8 @@ const getQuestion = (port: number) => ({
     default: false,
 })
 
-const isPortFree = (port: number) =>
-    new Promise((resolve, reject) => {
+const isPortFree = (port: number): Promise<boolean> =>
+    new Promise((resolve) => {
         const server = require('http')
             .createServer()
             .listen(port, () => {
@@ -17,14 +17,17 @@ const isPortFree = (port: number) =>
                 resolve(true)
             })
             .on('error', () => {
-                reject(false)
+                resolve(false)
             })
     })
 
-export const checkPort = (port: number) => isPortFree(port)
-    .then(() => port)
-    .catch(() => {
-        inquirer.prompt([getQuestion(port)])
+export const checkPort = (port: number): Promise<number> => isPortFree(port)
+    .then((res) => {
+        if (res) {
+            return port
+        }
+
+        return inquirer.prompt([getQuestion(port)])
             .then(({ isAnotherPort }: Record<string, boolean>) => {
                 if (isAnotherPort) {
                     return checkPort(port + 1)

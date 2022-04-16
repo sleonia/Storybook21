@@ -1,3 +1,4 @@
+import { checkPort } from './check-port';
 import path from 'path'
 
 import webpack from 'webpack'
@@ -10,31 +11,32 @@ import type { CommanderStartOptions } from './types'
 /** Path where webpack find files after compile */
 const VIRTUAL_DIR = path.join(process.cwd(), 'dist')
 
-export const runServer = ({
+export const runServer = async ({
     configPath,
     mode,
     port
-}: CommanderStartOptions): void => {
+}: CommanderStartOptions): Promise<void> => {
     const compiler = webpack(baseConfig)
 
-    
-
-    const devServerOptions: Configuration = {
-        static: {
-            directory: VIRTUAL_DIR
-        },
-        hot: true,
-        allowedHosts: 'localhost',
-        port,
-        client: {
-            logging: 'error',
-            progress: true
+    checkPort(port).then((freePort) => {
+        const devServerOptions: Configuration = {
+            static: {
+                directory: VIRTUAL_DIR
+            },
+            hot: true,
+            allowedHosts: 'localhost',
+            port: freePort,
+            client: {
+                logging: 'error',
+                progress: true
+            }
         }
-    }
 
-    const devServer = new WebpackDevServer(devServerOptions, compiler)
+        const devServer = new WebpackDevServer(devServerOptions, compiler)
 
-    devServer.startCallback(() => {
-        console.log(`💥 Server listening on port ${port} 💥`)
+        devServer.startCallback(() => {
+            console.log(`💥 Server listening on port ${freePort} 💥`)
+        })
     })
+
 }
