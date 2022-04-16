@@ -5,8 +5,6 @@ import WebpackDevServer from 'webpack-dev-server'
 import type { Configuration } from 'webpack-dev-server'
 import program from 'commander'
 
-process.env.NODE_ENV = 'development'
-
 import { config } from './base'
 
 export const runServer = (): void => {
