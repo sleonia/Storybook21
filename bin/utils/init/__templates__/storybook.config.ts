@@ -1,6 +1,6 @@
 import type { Navigation, Config } from 'storybook21'
 
-const navigation: Navigation = [
+const navigation: Array<Navigation> = [
     {
         link: '/',
         title: 'Main page',

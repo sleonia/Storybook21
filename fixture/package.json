@@ -1,16 +1,11 @@
 {
     "name": "fixture",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
     "scripts": {
         "storybook21": "npx cross-env NODE_ENV=development node ../bin/docs.js server --config=./docs.js --port=4242",
         "storybook21:build": "npx cross-env NODE_ENV=production node ../bin/docs.js build --config=./docs.js"
     },
-    "author": "",
-    "license": "ISC",
     "devDependencies": {
-        "@types/react": "17.0.37",
         "storybook21": "file:../storybook21-0.0.3.tgz"
     }
 }

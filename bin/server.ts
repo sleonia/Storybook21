@@ -20,6 +20,7 @@ export const runServer = async ({
 ): Promise<void> => {
     const freePort = await checkPort(port)
     const baseConfig = createBaseConfig(configPath, mode)
+    const compiler = webpack(baseConfig)
 
     const devServerOptions: Configuration = {
         static: {
@@ -38,8 +39,7 @@ export const runServer = async ({
 
     const host = `http://${devServerOptions.allowedHosts}:${freePort}`
 
-    console.log(`💥 Server listening on ${host} 💥`)
-
-    const compiler = webpack(baseConfig)
-    new WebpackDevServer(devServerOptions, compiler).start()
+    new WebpackDevServer(devServerOptions, compiler).startCallback(() => {
+        console.log(`💥 Server listening on ${host} 💥`)        
+    })
 }

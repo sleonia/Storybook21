@@ -6,7 +6,6 @@
         "storybook21": "./bin/storybook.ts"
     },
     "scripts": {
-        "postinstall": "./bin/storybook.ts init"
     },
     "types": "./@types/index.d.ts",
     "repository": {

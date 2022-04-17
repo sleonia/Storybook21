@@ -17,7 +17,7 @@ const getQuestion = () => ({
     type: 'confirm',
     name: 'defaultConfig',
     message: `Create default config?`,
-    default: true,
+    default: false,
 })
 
 const createConfigDirs = (path: string, pattern: string): void => {
@@ -36,9 +36,9 @@ const createConfigDirs = (path: string, pattern: string): void => {
                 )
             })
 
+        console.log(`✅ Created ${path}`)
     } else {
         console.log(chalk.red(`${path} directory is already exist 😰`))
-        process.exit(1)
     }
 }
 
@@ -52,14 +52,28 @@ const createConfigFile = (path: string): void => {
             readFileSync(resolve(configPath)),
             'utf-8'
         )
+
+        console.log(`✅ Created ${baseName}`)
     } else {
         console.log(chalk.red(`${baseName} config file is already exist 😰`))
-        process.exit(1)
     }
 }
 
 const addScriptsToPackageJson = (): void => {
+    const path = resolve(process.cwd(), 'package.json')
+    const json = JSON.parse(readFileSync(path, 'utf-8'))
+    
+    const getTemplate = (mode: 'start' | 'build') => `npx storybook21 ${mode} --config="./storybook.config.ts"`
 
+    json.scripts = {
+        ...json.scripts || {},
+        'start:storybook': getTemplate('start'),
+        'build:storybook': getTemplate('build')
+    }
+
+	writeFileSync(path, JSON.stringify(json, null, 4) + '\n');
+
+    console.log(`✅ package.json is updated`)
 }
 
 export const init = (): Promise<unknown> =>
@@ -69,7 +83,11 @@ export const init = (): Promise<unknown> =>
                 createConfigDirs(DEMO_DIR, `${__dirname}/${TEMPLATES_DIR}/*.tsx`)
                 createConfigDirs(STORYBOOK_DIR, `${__dirname}/${TEMPLATES_DIR}/*.mdx`)
                 createConfigFile(`${__dirname}/${TEMPLATES_DIR}/storybook.config.ts`)
+                addScriptsToPackageJson()
 
-                console.log('✅ Default config created')
+                console.log(
+                    '✅ App inited\n',
+                    'Try ', chalk.blue('npm run start:storybook'),
+                )
             }
         })

@@ -3,7 +3,7 @@ import inquirer from 'inquirer';
 const getQuestion = (port: number) => ({
     type: 'confirm',
     name: 'isAnotherPort',
-    message: `Port ${port} is already busy. Try another port?`,
+    message: `Port ${port} is already busy. Try another one?`,
     default: false,
 })
 

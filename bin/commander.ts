@@ -16,12 +16,12 @@ const modeOption = createOption('--mode <string>', 'Mode for run app')
 const portOption = createOption('--port <type>', 'Port for dev server')
 
 const parseOptions = ({
-    configPath,
+    config,
     mode,
     port
 }: Record<string, string | undefined>
 ): Required<CommanderStartOptions> => ({
-    configPath,
+    configPath: config,
     mode: mode === WebpackMode.Development || mode === WebpackMode.Production
         ? mode
         : WebpackMode.Development,
@@ -33,10 +33,10 @@ program
     .description(description)
     .version(version);
 
-// TODO хочу, чтобы он сам генерил конфиг и все нужные штуки
 program
     .command('init')
-    .action((str) => {
+    .description('initialize storybook in your app 📦')
+    .action(() => {
         init()
     })
 

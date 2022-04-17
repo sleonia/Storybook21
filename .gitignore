@@ -8,3 +8,4 @@ target-demo
 .vscode
 dist
 demo
+*.tgz
