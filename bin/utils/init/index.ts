@@ -6,10 +6,12 @@ import {
 } from 'fs'
 import chalk from 'chalk';
 import inquirer from 'inquirer'
-import { resolve } from 'path';
+import { resolve, basename } from 'path'
+import glob from "glob";
 
 const DEMO_DIR = 'demo'
 const STORYBOOK_DIR = 'storybook'
+const TEMPLATES_DIR = '__templates__'
 
 const getQuestion = () => ({
     type: 'confirm',
@@ -18,37 +20,56 @@ const getQuestion = () => ({
     default: true,
 })
 
-const createDemoDir = () => {
-    const demoPath = resolve(process.cwd(), DEMO_DIR)
-    if (!existsSync(demoPath)) {
-        mkdirSync(demoPath)
+const createConfigDirs = (path: string, pattern: string): void => {
+    const dirPath = resolve(process.cwd(), path)
 
-        writeFileSync(
-            resolve(demoPath, 'index.tsx'),
-            readFileSync(resolve(__dirname, './templates/index.tsx')),
-            'utf-8'
-        )
+    if (!existsSync(dirPath)) {
+        mkdirSync(dirPath)
 
-        writeFileSync(
-            resolve(demoPath, 'titled.tsx'),
-            readFileSync(resolve(__dirname, './templates/titled.tsx')),
-            'utf-8'
-        )
+        glob
+            .sync(pattern)
+            .forEach((filePath) => {
+                writeFileSync(
+                    resolve(dirPath, basename(filePath)),
+                    readFileSync(resolve(filePath)),
+                    'utf-8'
+                )
+            })
+
     } else {
-        console.log(chalk.red(`${DEMO_DIR} directory is exist 😰`))
+        console.log(chalk.red(`${path} directory is already exist 😰`))
         process.exit(1)
     }
 }
 
-const createStorybookDir = () => {
+const createConfigFile = (path: string): void => {
+    const configPath = resolve(process.cwd(), path)
+    const baseName = basename(path)
+
+    if (!existsSync(baseName)) {
+        writeFileSync(
+            resolve('.', baseName),
+            readFileSync(resolve(configPath)),
+            'utf-8'
+        )
+    } else {
+        console.log(chalk.red(`${baseName} config file is already exist 😰`))
+        process.exit(1)
+    }
+}
+
+const addScriptsToPackageJson = (): void => {
+
 }
 
 export const init = (): Promise<unknown> =>
     inquirer.prompt([getQuestion()])
         .then(({ defaultConfig }: Record<string, boolean>) => {
             if (defaultConfig) {
-                const dir = process.cwd()
+                createConfigDirs(DEMO_DIR, `${__dirname}/${TEMPLATES_DIR}/*.tsx`)
+                createConfigDirs(STORYBOOK_DIR, `${__dirname}/${TEMPLATES_DIR}/*.mdx`)
+                createConfigFile(`${__dirname}/${TEMPLATES_DIR}/storybook.config.ts`)
 
-                createDemoDir()
+                console.log('✅ Default config created')
             }
         })
