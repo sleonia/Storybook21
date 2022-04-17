@@ -4,8 +4,5 @@
     "scripts": {
         "storybook21": "npx cross-env NODE_ENV=development node ../bin/docs.js server --config=./docs.js --port=4242",
         "storybook21:build": "npx cross-env NODE_ENV=production node ../bin/docs.js build --config=./docs.js"
-    },
-    "devDependencies": {
-        "storybook21": "file:../storybook21-0.0.3.tgz"
     }
 }
