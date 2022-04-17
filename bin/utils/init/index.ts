@@ -65,6 +65,11 @@ const addScriptsToPackageJson = (): void => {
     
     const getTemplate = (mode: 'start' | 'build') => `npx storybook21 ${mode} --config="./storybook.config.ts"`
 
+    if (json.scripts['start:storybook'] || json.scripts['build:storybook']) {
+        console.log(chalk.red(`start:storybook or build:storybook scripts are already exist 😰`))
+        return
+    }
+
     json.scripts = {
         ...json.scripts || {},
         'start:storybook': getTemplate('start'),
