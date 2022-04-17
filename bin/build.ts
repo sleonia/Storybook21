@@ -5,7 +5,7 @@ import { mergeWithCustomize, customizeObject } from 'webpack-merge'
 import WebpackNotifierPlugin from 'webpack-notifier'
 import { DIST } from '../constants'
 
-import { createBaseConfig } from './base'
+import { createBaseConfig } from './utils/base'
 import type { CommanderStartOptions } from './types'
 
 export const runBuild = ({

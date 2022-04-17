@@ -1,5 +1,4 @@
 import type { Configuration } from 'webpack';
-import emoji from 'remark-emoji'
 
 import { DIST, ENTRY } from './constants'
 
@@ -40,10 +39,7 @@ const config: Configuration = {
                         }
                     },
                     {
-                        loader: '@mdx-js/loader',
-                        options: {
-                            remarkPlugins: [emoji]
-                        }
+                        loader: '@mdx-js/loader'
                     }
                 ]
             }

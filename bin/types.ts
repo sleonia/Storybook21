@@ -10,7 +10,3 @@ export type CommanderStartOptions = {
     mode?: Exclude<Configuration['mode'], 'none'>
     port?: number
 }
-
-export type PepeConfig = {
-
-}

@@ -7,3 +7,4 @@ target-demo
 .DS_Store
 .vscode
 dist
+demo

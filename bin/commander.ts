@@ -1,8 +1,9 @@
 import { Command, createOption } from 'commander';
 
-import { version } from '../package.json'
+import { version, description } from '../package.json'
 import { runServer } from './server'
 import { runBuild } from './build'
+import { init } from './utils/init'
 import type { CommanderStartOptions } from './types'
 import { WebpackMode } from './types'
 
@@ -21,18 +22,23 @@ const parseOptions = ({
 }: Record<string, string | undefined>
 ): Required<CommanderStartOptions> => ({
     configPath,
-    mode: mode === WebpackMode.Development || mode === WebpackMode.Production ? mode : WebpackMode.Development,
+    mode: mode === WebpackMode.Development || mode === WebpackMode.Production
+        ? mode
+        : WebpackMode.Development,
     port: Number(port) || DEFAULT_PORT
 })
 
 program
-    .name('🌈 21 Storybook 🌈')
-    .description('Open source tool for developing UI components in isolation for React')
+    .name('🌈 Storybook 21 🌈')
+    .description(description)
     .version(version);
 
 // TODO хочу, чтобы он сам генерил конфиг и все нужные штуки
 program
-    .command('init');
+    .command('init')
+    .action((str) => {
+        init()
+    })
 
 program
     .command('start')
@@ -40,7 +46,7 @@ program
     .addOption(configOption)
     .addOption(modeOption)
     .addOption(portOption)
-    .action((str) => {
+    .action((str: Record<string, string | undefined>) => {
         const options = parseOptions(str)
         runServer(options)
     })

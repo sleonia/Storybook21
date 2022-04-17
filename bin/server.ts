@@ -1,12 +1,12 @@
 import { DIST } from './../constants';
-import { checkPort } from './check-port';
+import { checkPort } from './utils/check-port';
 import path from 'path'
 
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 import type { Configuration } from 'webpack-dev-server'
 
-import { createBaseConfig } from './base'
+import { createBaseConfig } from './utils/base'
 import type { CommanderStartOptions } from './types'
 
 /** Path where webpack find files after compile */
