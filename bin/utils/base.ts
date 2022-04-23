@@ -1,4 +1,6 @@
 import { Config } from './../../@types/index.d';
+// import { DefinePlugin } from 'webpack';
+import webpack from 'webpack';
 import type { Configuration } from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
@@ -12,12 +14,16 @@ export const createBaseConfig = (
     configPath: string,
     mode: Exclude<Configuration['mode'], 'none'>
 ): Configuration => {
-    const configProject = require(`${process.cwd()}/${configPath}`) as Config
+    const configProject = { title: '', version: '1.0.0' }
+    // const configProject = require(`${process.cwd()}/${configPath}`) as Config
 
     return ({
         ...config,
         mode,
         plugins: [
+            new webpack.DefinePlugin({
+                'process.env.VERSION': JSON.stringify(configProject.version)
+            }),
             new HtmlWebpackPlugin({
                 templateContent: `
                 <!DOCTYPE html>

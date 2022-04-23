@@ -46,7 +46,7 @@ const config: Configuration = {
         ]
     },
     resolve: {
-        extensions: ['.jsx', '.js', '.tsx', '.ts', '.css', '.json'],
+        extensions: ['.jsx', '.js', '.tsx', '.ts', '.css', '.json']
     }
 }
 

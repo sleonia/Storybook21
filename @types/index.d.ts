@@ -12,6 +12,7 @@ export type Navigation = {
 
 export type Config = {
     title?: string
+    version?: string
     globalStyle?: string
     componentsDir: string
     themeProvider?: string

@@ -1,5 +1,20 @@
 import React from 'react'
-import Button from '@mui/material/Button';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import {
+    Global,
+    MantineProvider,
+    ColorSchemeProvider
+} from '@mantine/core'
+import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import type { ColorScheme } from '@mantine/core'
+
+import './i18next'
+
+import { HotKeys } from './hotkeys'
+import { Header } from './header'
+import { Sidebar } from './sidebar'
+import { Main } from './main'
+import { Footer } from './footer'
 
 /*
     assets
@@ -15,11 +30,56 @@ import Button from '@mui/material/Button';
     utils
  */
 
-export const App = (): JSX.Element => (
-    <div>
-        <p>
-            {'🪄 Hello world 🪄'}
-        </p>
-        <Button variant="text">Text</Button>
-    </div>
-)
+const THEMES = {
+    light: 'light',
+    dark: 'dark'
+} as const
+
+export const App = (): JSX.Element => {
+    const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+        key: 'mantine-color-scheme',
+        defaultValue: THEMES.light,
+        getInitialValueInEffect: true,
+    })
+
+    const toggleColorScheme = (value?: ColorScheme): void => {
+        setColorScheme(value || (colorScheme === THEMES.dark ? THEMES.light : THEMES.dark))
+    }
+
+    useHotkeys([[HotKeys.themeSwitcher, (): void => toggleColorScheme()]])
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route
+                    path="/"
+                    element={
+                        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+                            <MantineProvider
+                                theme={{ colorScheme, fontFamily: 'Open Sans' }}
+                                withGlobalStyles
+                            >
+                                <Global
+                                    styles={{
+                                        '*, *::before, *::after': {
+                                            boxSizing: 'border-box',
+                                            margin: 0,
+                                            padding: 0
+                                        }
+                                    }}
+                                />
+                                {/* TODO wrapper */}
+                                <div >
+                                    <Header />
+                                    <Sidebar />
+                                    <Main />
+                                    <Footer />
+                                </div>
+                            </MantineProvider>
+                        </ColorSchemeProvider>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
+    )
+}

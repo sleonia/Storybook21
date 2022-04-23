@@ -1,0 +1,6 @@
+{
+    "title": "Storybook21",
+    "theme-switch": "{{colorScheme}} mode",
+    "search.placeholder": "Search",
+    "github.link": "https://github.com/sleonia/Storybook21"
+}
