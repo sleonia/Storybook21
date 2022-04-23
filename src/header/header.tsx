@@ -44,11 +44,10 @@ export const Header = (): JSX.Element => {
                 <Group>
                     <Search />
                     <Anchor
-                        className={classes.githubLink}
+                        component="a"
                         color={color}
-                        component={Link}
-                        hrefLang={i18next.t('github.link')}
-                        to={i18next.t('github.link')}
+                        className={classes.githubLink}
+                        href={i18next.t('github.link')}
                         target="_blank"
                         rel="noopener noreferrer"
                     >
