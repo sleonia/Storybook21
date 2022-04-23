@@ -56,7 +56,7 @@ export const App = (): JSX.Element => {
                     element={
                         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
                             <MantineProvider
-                                theme={{ colorScheme, fontFamily: 'Open Sans' }}
+                                theme={{ colorScheme }}
                                 withGlobalStyles
                             >
                                 <Global

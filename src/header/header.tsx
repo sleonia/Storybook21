@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import {
     Anchor,
+    MediaQuery,
     useMantineColorScheme,
     Group,
     Kbd,
@@ -13,6 +14,7 @@ import { BrandGithub, BrandCodesandbox } from 'tabler-icons-react'
 import i18next from 'i18next'
 
 import { Search } from './search'
+import { Logo } from './logo'
 import { ThemeSwitcher } from './theme-switcher'
 import { useHeaderStyles } from './header.style'
 
@@ -25,34 +27,21 @@ export const Header = (): JSX.Element => {
     return (
         <header>
             <div className={classes.inner}>
-                <Group>
-                    <Group>
-                        <Anchor
-                            className={classes.logo}
-                            component={Link}
-                            hrefLang="/"
-                            to="/"
-                        >
-                            <ThemeIcon className={classes.logoIcon}>
-                                <BrandCodesandbox size={36} />
-                            </ThemeIcon>
-                            <Title order={4}>{i18next.t('title')}</Title>
-                        </Anchor>
-                    </Group>
-                    {process.env.VERSION && <Kbd color={color}>{process.env.VERSION}</Kbd>}
-                </Group>
+                <Logo />
                 <Group>
                     <Search />
-                    <Anchor
-                        component="a"
-                        color={color}
-                        className={classes.githubLink}
-                        href={i18next.t('github.link')}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <BrandGithub size={28} />
-                    </Anchor>
+                    <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+                        <Anchor
+                            component="a"
+                            color={color}
+                            className={classes.githubLink}
+                            href={i18next.t('github.link')}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <BrandGithub size={28} />
+                        </Anchor>
+                    </MediaQuery>
                     <ThemeSwitcher />
                 </Group>
             </div>
