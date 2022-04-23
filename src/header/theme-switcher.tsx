@@ -5,7 +5,6 @@ import i18next from 'i18next'
 
 import { capitalize } from '../utils'
 
-
 export const ThemeSwitcher = (): JSX.Element => {
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
     const isDark = colorScheme === 'dark'

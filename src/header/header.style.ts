@@ -21,6 +21,7 @@ export const useHeaderStyles = createStyles(() => ({
     },
     githubLink: {
         height: 28,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        borderRadius: 4
     }
 }))
