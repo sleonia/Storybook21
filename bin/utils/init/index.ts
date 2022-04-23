@@ -62,7 +62,7 @@ const createConfigFile = (path: string): void => {
 const addScriptsToPackageJson = (): void => {
     const path = resolve(process.cwd(), 'package.json')
     const json = JSON.parse(readFileSync(path, 'utf-8'))
-    
+
     const getTemplate = (mode: 'start' | 'build') => `npx storybook21 ${mode} --config="./storybook.config.ts"`
 
     if (json.scripts['start:storybook'] || json.scripts['build:storybook']) {
@@ -76,23 +76,31 @@ const addScriptsToPackageJson = (): void => {
         'build:storybook': getTemplate('build')
     }
 
-	writeFileSync(path, JSON.stringify(json, null, 4) + '\n');
+    writeFileSync(path, JSON.stringify(json, null, 4) + '\n');
 
     console.log(`✅ package.json is updated`)
 }
 
-export const init = (): Promise<unknown> =>
-    inquirer.prompt([getQuestion()])
-        .then(({ defaultConfig }: Record<string, boolean>) => {
-            if (defaultConfig) {
-                createConfigDirs(DEMO_DIR, `${__dirname}/${TEMPLATES_DIR}/*.tsx`)
-                createConfigDirs(STORYBOOK_DIR, `${__dirname}/${TEMPLATES_DIR}/*.mdx`)
-                createConfigFile(`${__dirname}/${TEMPLATES_DIR}/storybook.config.ts`)
-                addScriptsToPackageJson()
+const initHelper = (): void => {
+    createConfigDirs(DEMO_DIR, `${__dirname}/${TEMPLATES_DIR}/*.tsx`)
+    createConfigDirs(STORYBOOK_DIR, `${__dirname}/${TEMPLATES_DIR}/*.mdx`)
+    createConfigFile(`${__dirname}/${TEMPLATES_DIR}/storybook.config.ts`)
+    addScriptsToPackageJson()
+    
+    console.log(
+        '✅ App inited\n',
+        'Try ', chalk.blue('npm run start:storybook'),
+    )
+}
 
-                console.log(
-                    '✅ App inited\n',
-                    'Try ', chalk.blue('npm run start:storybook'),
-                )
-            }
-        })
+export const init = async (isY: boolean): Promise<unknown> => {
+    if (isY) {
+        initHelper()
+        return Promise.resolve()
+    } else {
+        const { defaultConfig } = await inquirer.prompt([getQuestion()]);
+        if (defaultConfig) {
+            initHelper();
+        }
+    }
+}

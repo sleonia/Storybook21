@@ -14,6 +14,7 @@ const program = new Command();
 const configOption = createOption('--config <string>', 'Path to config file')
 const modeOption = createOption('--mode <string>', 'Mode for run app')
 const portOption = createOption('--port <type>', 'Port for dev server')
+const initOption = createOption('-y ', 'Init with default configuration')
 
 const parseOptions = ({
     config,
@@ -36,8 +37,9 @@ program
 program
     .command('init')
     .description('initialize storybook in your app 📦')
-    .action(() => {
-        init()
+    .addOption(initOption)
+    .action(({ y }: { y: boolean }) => {
+        init(y)
     })
 
 program
@@ -56,7 +58,7 @@ program
     .description('build app 🛠️')
     .addOption(modeOption)
     .addOption(configOption)
-    .action((str) => {
+    .action((str: Record<string, string | undefined>) => {
         const options = parseOptions(str)
         runBuild(options)
     })
