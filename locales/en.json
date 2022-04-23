@@ -2,5 +2,11 @@
     "title": "Storybook21",
     "theme-switch": "{{colorScheme}} mode",
     "search.placeholder": "Search",
-    "github.link": "https://github.com/sleonia/Storybook21"
+    "github.project.link": "https://github.com/sleonia/Storybook21",
+    "footer.description": "Build web applications faster than ever",
+    "footer.build-by": "Built by Nikita Dontsov",
+    "github.me.link": "https://github.com/sleonia",
+    "footer.about.title": "About",
+    "footer.community.title": "Community",
+    "footer.project.title": "Project"
 }

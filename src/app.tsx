@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {
     Global,
     MantineProvider,
-    ColorSchemeProvider
+    ColorSchemeProvider,
+    Group
 } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import type { ColorScheme } from '@mantine/core'
@@ -14,7 +15,6 @@ import { HotKeys } from './hotkeys'
 import { Header } from './header'
 import { Sidebar } from './sidebar'
 import { Main } from './main'
-import { Footer } from './footer'
 
 /*
     assets
@@ -69,11 +69,12 @@ export const App = (): JSX.Element => {
                                     }}
                                 />
                                 {/* TODO wrapper */}
-                                <div >
+                                <div style={{ height: '100vh' }}>
                                     <Header />
-                                    <Sidebar />
-                                    <Main />
-                                    <Footer />
+                                    <Group align="start" spacing={0} noWrap>
+                                        <Sidebar />
+                                        <Main />
+                                    </Group>
                                 </div>
                             </MantineProvider>
                         </ColorSchemeProvider>

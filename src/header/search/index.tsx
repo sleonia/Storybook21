@@ -11,14 +11,12 @@ export const Search = (): JSX.Element => {
 
     useHotkeys([[HotKeys.openSearch, (): void => ref.current?.focus()]])
 
-    const Tip = <Kbd>{HotKeys.openSearch}</Kbd>
-
     return (
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
             <Autocomplete
                 ref={ref}
                 placeholder={`${i18next.t('search.placeholder')} ${HotKeys.openSearch}`}
-                rightSection={Tip}
+                rightSection={<Kbd>{HotKeys.openSearch}</Kbd>}
                 rightSectionWidth={60}
                 icon={<SearchIcon size={16} />}
                 data={['React', 'Angular', 'Svelte', 'Vue']}

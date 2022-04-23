@@ -1,41 +1,33 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {
     Anchor,
     MediaQuery,
-    useMantineColorScheme,
     Group,
-    Kbd,
-    Title,
-    ThemeIcon,
     Divider
 } from '@mantine/core'
-import { BrandGithub, BrandCodesandbox } from 'tabler-icons-react'
+import { BrandGithub } from 'tabler-icons-react'
 import i18next from 'i18next'
 
 import { Search } from './search'
-import { Logo } from './logo'
+import { LogoBlock } from './logo-block'
 import { ThemeSwitcher } from './theme-switcher'
 import { useHeaderStyles } from './header.style'
 
 export const Header = (): JSX.Element => {
-    const { colorScheme } = useMantineColorScheme()
-    const color = colorScheme === 'dark' ? 'gray' : 'blue'
-
     const { classes } = useHeaderStyles()
 
     return (
         <header>
             <div className={classes.inner}>
-                <Logo />
+                <LogoBlock />
                 <Group>
                     <Search />
                     <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
                         <Anchor
                             component="a"
-                            color={color}
+                            color="blue"
                             className={classes.githubLink}
-                            href={i18next.t('github.link')}
+                            href={i18next.t('github.project.link')}
                             target="_blank"
                             rel="noopener noreferrer"
                         >

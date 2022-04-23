@@ -12,7 +12,7 @@ export const ThemeSwitcher = (): JSX.Element => {
     return (
         <ActionIcon
             variant="transparent"
-            color={isDark ? 'gray' : 'blue'}
+            color="blue"
             onClick={(): void => {
                 toggleColorScheme()
             }}

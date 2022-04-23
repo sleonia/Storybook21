@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core'
 
-export const HEADER_HEIGHT = '60px'
+import { HEADER_HEIGHT } from '../constants'
 
 export const useHeaderStyles = createStyles(() => ({
     header: {
@@ -12,12 +12,6 @@ export const useHeaderStyles = createStyles(() => ({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '0 20px'
-    },
-    logo: {
-        display: 'flex'
-    },
-    logoIcon: {
-        marginRight: 8
     },
     githubLink: {
         height: 28,
