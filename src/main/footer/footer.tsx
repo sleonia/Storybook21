@@ -1,8 +1,8 @@
 import React from 'react'
 import i18next from 'i18next'
-import { Stack, Container, Text, Divider, Anchor, Group } from '@mantine/core'
+import { Stack, Container, Text, Divider, Group } from '@mantine/core'
 
-import { Logo } from '../../components'
+import { ExtrernalLink, Logo } from '../../components'
 
 import { useFooterStyles } from './footer.style'
 
@@ -20,30 +20,33 @@ export const Footer = (): JSX.Element => {
                         <Group className={classes.wrapper} spacing="xl">
                             <Stack spacing="xs">
                                 <Text weight={700}>{i18next.t('footer.about.title')}</Text>
-                                <Text size="sm">Contribute</Text>
+                                <ExtrernalLink href={i18next.t('footer.about.contribute.href')}>
+                                    <Text size="sm">{i18next.t('footer.about.contribute')}</Text>
+                                </ExtrernalLink>
                             </Stack>
                             <Stack spacing="xs">
                                 <Text weight={700}>{i18next.t('footer.community.title')}</Text>
-                                <Text size="sm">Follow on Github</Text>
+                                <ExtrernalLink href={i18next.t('github.me.link')}>
+                                    <Text size="sm">{i18next.t('footer.community.follow-me-github')}</Text>
+                                </ExtrernalLink>
                             </Stack>
                             <Stack spacing="xs">
                                 <Text weight={700}>{i18next.t('footer.project.title')}</Text>
-                                {/* <Stack spacing="xs"> */}
-                                    <Text size="sm">Documentation</Text>
-                                    <Text size="sm">npm</Text>
-                                {/* </Stack> */}
+                                <div>
+                                    <ExtrernalLink href={i18next.t('footer.project.documentation.href')}>
+                                        <Text size="sm">{i18next.t('footer.project.documentation')}</Text>
+                                    </ExtrernalLink>
+                                    <ExtrernalLink href={i18next.t('footer.project.npm.href')}>
+                                        <Text size="sm">{i18next.t('footer.project.npm')}</Text>
+                                    </ExtrernalLink>
+                                </div>
                             </Stack>
                         </Group>
                     </Group>
                     <Divider />
-                    <Anchor
-                        component="a"
-                        href={i18next.t('github.me.link')}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <ExtrernalLink href={i18next.t('github.me.link')}>
                         <Text size="sm" color="gray" underline>{i18next.t('footer.build-by')}</Text>
-                    </Anchor>
+                    </ExtrernalLink>
                 </Stack>
             </Container>
         </footer>

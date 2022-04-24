@@ -7,6 +7,13 @@
     "footer.build-by": "Built by Nikita Dontsov",
     "github.me.link": "https://github.com/sleonia",
     "footer.about.title": "About",
+    "footer.about.contribute": "Contribute",
+    "footer.about.contribute.href": "",
     "footer.community.title": "Community",
-    "footer.project.title": "Project"
+    "footer.community.follow-me-github": "Follow on Github",
+    "footer.project.title": "Project",
+    "footer.project.documentation": "Documentation",
+    "footer.project.documentation.href": "",
+    "footer.project.npm": "Npm",
+    "footer.project.npm.href": ""
 }

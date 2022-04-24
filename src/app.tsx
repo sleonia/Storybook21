@@ -10,32 +10,16 @@ import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import type { ColorScheme } from '@mantine/core'
 
 import './i18next'
-
+import { THEMES } from './constants'
 import { HotKeys } from './hotkeys'
 import { Header } from './header'
 import { Sidebar } from './sidebar'
 import { Main } from './main'
+import { GlobalStyles, useAppStyles } from './app.style'
 
-/*
-    assets
-    code-block
-    collapse-menu
-    components
-    data-provider
-    head-line
-    index.jsx
-    props-table
-    scaffold
-    theme-provider
-    utils
- */
-
-const THEMES = {
-    light: 'light',
-    dark: 'dark'
-} as const
-
+// TODO разделить роутинг и компоненту
 export const App = (): JSX.Element => {
+    const { classes } = useAppStyles()
     const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
         key: 'mantine-color-scheme',
         defaultValue: THEMES.light,
@@ -54,22 +38,16 @@ export const App = (): JSX.Element => {
                 <Route
                     path="/"
                     element={
-                        <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+                        <ColorSchemeProvider
+                            colorScheme={colorScheme}
+                            toggleColorScheme={toggleColorScheme}
+                        >
                             <MantineProvider
                                 theme={{ colorScheme }}
                                 withGlobalStyles
                             >
-                                <Global
-                                    styles={{
-                                        '*, *::before, *::after': {
-                                            boxSizing: 'border-box',
-                                            margin: 0,
-                                            padding: 0
-                                        }
-                                    }}
-                                />
-                                {/* TODO wrapper */}
-                                <div style={{ height: '100vh' }}>
+                                <Global styles={GlobalStyles} />
+                                <div className={classes.wrapper}>
                                     <Header />
                                     <Group align="start" spacing={0} noWrap>
                                         <Sidebar />

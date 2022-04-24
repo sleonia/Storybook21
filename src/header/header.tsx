@@ -1,12 +1,9 @@
 import React from 'react'
-import {
-    Anchor,
-    MediaQuery,
-    Group,
-    Divider
-} from '@mantine/core'
+import { MediaQuery, Group, Divider } from '@mantine/core'
 import { BrandGithub } from 'tabler-icons-react'
 import i18next from 'i18next'
+
+import { ExtrernalLink } from '../components'
 
 import { Search } from './search'
 import { LogoBlock } from './logo-block'
@@ -23,21 +20,18 @@ export const Header = (): JSX.Element => {
                 <Group>
                     <Search />
                     <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-                        <Anchor
-                            component="a"
+                        <ExtrernalLink
                             color="blue"
                             className={classes.githubLink}
                             href={i18next.t('github.project.link')}
-                            target="_blank"
-                            rel="noopener noreferrer"
                         >
                             <BrandGithub size={28} />
-                        </Anchor>
+                        </ExtrernalLink>
                     </MediaQuery>
                     <ThemeSwitcher />
                 </Group>
             </div>
             <Divider />
-        </header>
+        </header >
     )
 }
