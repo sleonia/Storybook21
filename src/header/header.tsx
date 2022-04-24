@@ -3,7 +3,7 @@ import { MediaQuery, Group, Divider, Burger } from '@mantine/core'
 import { BrandGithub } from 'tabler-icons-react'
 import i18next from 'i18next'
 
-import { ExtrernalLink } from '../components'
+import { ExternalLink } from '../components'
 
 import type { HeaderProps } from './types'
 import { Search } from './search'
@@ -37,13 +37,13 @@ export const Header = ({
                 <Group>
                     <Search />
                     <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
-                        <ExtrernalLink
+                        <ExternalLink
                             color="blue"
                             className={classes.githubLink}
                             href={i18next.t('github.project.link')}
                         >
                             <BrandGithub size={28} />
-                        </ExtrernalLink>
+                        </ExternalLink>
                     </MediaQuery>
                     <ThemeSwitcher />
                 </Group>

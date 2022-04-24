@@ -1,15 +1,11 @@
+import path from 'path'
+
 import type { Configuration } from 'webpack'
 
 import { DIST, ENTRY } from './constants'
 
-const path = require('path')
-// import MonacoWebpackPlugin from 'monaco-editor-webpack-plugin';
-
-
-const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor')
-
 const config: Configuration = {
-    entry: [__dirname + ENTRY],
+    entry: [path.join(__dirname, ENTRY)],
     output: {
         path: `${__dirname}/${DIST}`
     },
@@ -19,7 +15,8 @@ const config: Configuration = {
                 test: /\.m?js/,
                 resolve: {
                     // https://webpack.js.org/configuration/module/#resolvefullyspecified
-                    fullySpecified: false // disable the behaviour
+                    // disable the behaviour
+                    fullySpecified: false
                 }
             },
             {
@@ -34,15 +31,6 @@ const config: Configuration = {
                     }
                 ]
             },
-            // {
-            //     test: /\.css$/,
-            //     include: MONACO_DIR,
-            //     use: ['style-loader', 'css-loader']
-            // },
-            // {
-            //     test: /\.ttf$/,
-            //     use: ['file-loader']
-            // },
             {
                 test: /\.mdx?$/,
                 use: [
@@ -64,7 +52,6 @@ const config: Configuration = {
         extensions: ['.jsx', '.js', '.tsx', '.ts', '.css', '.json']
     },
     plugins: []
-    // plugins: [new MonacoWebpackPlugin({ languages: ['javascript', 'typescript'] })]
 }
 
 export default config

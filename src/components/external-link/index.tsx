@@ -2,14 +2,15 @@ import React from 'react'
 import type { PropsWithChildren } from 'react'
 import { Anchor } from '@mantine/core'
 
-import type { ExtrernalLinkProps } from './types'
+import type { ExternalLinkProps } from './types'
 
-export const ExtrernalLink = ({
+export const ExternalLink = ({
     href,
     color,
     className,
-    children
-}: PropsWithChildren<ExtrernalLinkProps>): JSX.Element => (
+    children,
+    ...rest
+}: PropsWithChildren<ExternalLinkProps>): JSX.Element => (
     <Anchor
         component="a"
         color={color}
@@ -17,6 +18,7 @@ export const ExtrernalLink = ({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
+        {...rest}
     >
         {children}
     </Anchor>

@@ -17,6 +17,7 @@ import { DataProvider } from './data-provider'
 import { Header } from './header'
 import { Sidebar } from './sidebar'
 import { Main } from './main'
+import { NotFound } from './404'
 import { GlobalStyles, useAppStyles } from './app.style'
 
 // TODO разделить роутинг и компоненту
@@ -55,10 +56,14 @@ export const App = (): JSX.Element => {
                         <div className={classes.wrapper}>
                             <Header
                                 isSidebarOpened={isSidebarOpened}
-                                handleSidebarOpened={handleSidebarOpened} />
+                                handleSidebarOpened={handleSidebarOpened}
+                            />
                             <Group align="start" spacing={0} noWrap>
                                 <Sidebar isSidebarOpened={isSidebarOpened} />
-                                <Main />
+                                <Routes>
+                                    <Route path="/" element={<Main />} />
+                                    <Route path="*" element={<NotFound />} />
+                                </Routes>
                             </Group>
                         </div>
                     </MantineProvider>

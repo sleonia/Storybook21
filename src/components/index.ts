@@ -1,2 +1,2 @@
 export { Logo } from './logo'
-export { ExtrernalLink } from './external-link'
+export { ExternalLink } from './external-link'

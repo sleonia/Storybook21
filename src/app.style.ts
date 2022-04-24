@@ -11,6 +11,6 @@ export const GlobalStyles: CSSObject = {
 
 export const useAppStyles = createStyles(() => ({
     wrapper: {
-        height: '100vh'
+        minHeight: '100vh'
     }
 }))

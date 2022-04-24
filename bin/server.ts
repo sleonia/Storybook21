@@ -34,7 +34,8 @@ export const runServer = async ({
             progress: true
         },
         compress: true,
-        watchFiles: ['src/**//\.(js|jsx|tsx|ts)$/']
+        watchFiles: ['src/**//\\.(js|jsx|tsx|ts)$/'],
+        historyApiFallback: true
     }
 
     const host = `http://${devServerOptions.allowedHosts}:${freePort}`

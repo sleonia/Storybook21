@@ -3,13 +3,8 @@
 
 import { createStyles } from '@mantine/core'
 import type { CSSObject } from '@mantine/core'
-import type { CSSProperties } from 'react'
 
-import { THEMES, HEADER_HEIGHT, SIDEBAR_WIDTH } from '../constants'
-
-export const ScrollStyles: CSSProperties = {
-    height: `calc(100vh - ${HEADER_HEIGHT} - 1px)`
-}
+import { THEMES, ScrollStyles, SIDEBAR_WIDTH } from '../constants'
 
 export const MobileStyles: CSSObject = {
     width: SIDEBAR_WIDTH

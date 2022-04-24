@@ -1,6 +1,8 @@
-import inquirer from 'inquirer'
+import http from 'http'
 
-const getQuestion = (port: number) => ({
+import inquirer, { QuestionCollection } from 'inquirer'
+
+const getQuestion = (port: number): QuestionCollection => ({
     type: 'confirm',
     name: 'isAnotherPort',
     message: `Port ${port} is already busy. Try another one?`,
@@ -9,12 +11,11 @@ const getQuestion = (port: number) => ({
 
 const isPortFree = (port: number): Promise<boolean> =>
     new Promise((resolve) => {
-        const server = require('http')
-            .createServer()
-            .listen(port, () => {
-                server.close()
-                resolve(true)
-            })
+        const server = http.createServer()
+        server.listen(port, () => {
+            server.close()
+            resolve(true)
+        })
             .on('error', () => {
                 resolve(false)
             })
@@ -32,7 +33,6 @@ export const checkPort = (port: number): Promise<number> => isPortFree(port)
                     return checkPort(port + 1)
                 }
                 process.exit(1)
-                
             })
             .catch((e: unknown) => {
                 console.log(e)

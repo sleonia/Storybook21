@@ -2,29 +2,27 @@ import React from 'react'
 import { MediaQuery, Accordion, ScrollArea, Text } from '@mantine/core'
 
 import { useDataProvider } from '../data-provider'
+import { ScrollStyles } from '../constants'
 
 import type { SidebarProps } from './types'
 import {
-    ScrollStyles,
     MobileStyles,
     useSidebarStyles
 } from './sidebar.style'
 
 const RENAME_ME = () => {
-    const makeNavigation = (navigation: []) => {
-        return <>
-            {navigation.map((item) => !item.hidden && (
-                <>
-                    {!item.mdx && item.children.length === 0 ? (
-                        <Text>{item.title}</Text>
-                    ) : (
-                        <Text>{item.title}</Text>
-                    )}
-                    {makeNavigation(item.children)}
-                </>
-            ))}
-        </>
-    }
+    const makeNavigation = (navigation: []) => (<>
+        {navigation.map((item) => !item.hidden && (
+            <>
+                {!item.mdx && item.children.length === 0 ? (
+                    <Text>{item.title}</Text>
+                ) : (
+                    <Text>{item.title}</Text>
+                )}
+                {makeNavigation(item.children)}
+            </>
+        ))}
+    </>)
     return makeNavigation
 }
 
