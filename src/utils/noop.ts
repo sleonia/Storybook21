@@ -1,1 +1,3 @@
-export const noop = (): void => {}
+import type { EmptyFn } from './types'
+
+export const noop: EmptyFn = () => {}

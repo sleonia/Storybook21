@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import {
     Global,
@@ -6,10 +6,11 @@ import {
     ColorSchemeProvider,
     Group
 } from '@mantine/core'
-import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import { useMediaQuery, useHotkeys, useLocalStorage } from '@mantine/hooks'
 import type { ColorScheme } from '@mantine/core'
 
 import './i18next'
+
 import { THEMES } from './constants'
 import { HotKeys } from './hotkeys'
 import { Header } from './header'
@@ -23,8 +24,14 @@ export const App = (): JSX.Element => {
     const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
         key: 'mantine-color-scheme',
         defaultValue: THEMES.light,
-        getInitialValueInEffect: true,
+        getInitialValueInEffect: true
     })
+
+    // const matches = useMediaQuery('(max-width: 769px)', false)
+    // TODO обработать мобилу
+    const [isSidebarOpened, setSidebarOpened] = useState(true)
+
+    const handleSidebarOpened = (): void => setSidebarOpened(!isSidebarOpened)
 
     const toggleColorScheme = (value?: ColorScheme): void => {
         setColorScheme(value || (colorScheme === THEMES.dark ? THEMES.light : THEMES.dark))
@@ -48,9 +55,12 @@ export const App = (): JSX.Element => {
                             >
                                 <Global styles={GlobalStyles} />
                                 <div className={classes.wrapper}>
-                                    <Header />
+                                    <Header
+                                        isSidebarOpened={isSidebarOpened}
+                                        handleSidebarOpened={handleSidebarOpened}
+                                    />
                                     <Group align="start" spacing={0} noWrap>
-                                        <Sidebar />
+                                        <Sidebar isSidebarOpened={isSidebarOpened} />
                                         <Main />
                                     </Group>
                                 </div>

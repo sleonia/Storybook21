@@ -12,6 +12,10 @@ module.exports = {
             }
         }
     },
+    rules: {
+        'comma-dangle': ['error', 'never'],
+        '@typescript-eslint/comma-dangle': ['error', 'never']
+    },
     overrides: [
         {
             files: ['*.ts', '*.tsx'],
@@ -21,7 +25,8 @@ module.exports = {
             },
             rules: {
                 '@typescript-eslint/no-confusing-void-expression': 'off',
-                'react/jsx-no-bind': 'off'
+                'react/jsx-no-bind': 'off',
+                'react/forbid-component-props': 'off'
             }
         },
         {

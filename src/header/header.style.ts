@@ -1,10 +1,16 @@
+import type { CSSObject } from '@emotion/react'
 import { createStyles } from '@mantine/core'
 
 import { HEADER_HEIGHT } from '../constants'
 
+export const BurgerLargerMedia: CSSObject = {
+    display: 'none'
+}
+
+
 export const useHeaderStyles = createStyles(() => ({
     header: {
-        height: HEADER_HEIGHT,
+        height: HEADER_HEIGHT
     },
     inner: {
         height: HEADER_HEIGHT,
