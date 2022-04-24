@@ -21,6 +21,7 @@ export const createBaseConfig = (
         ...config,
         mode,
         plugins: [
+          ...config.plugins,
             new webpack.DefinePlugin({
                 'process.env.VERSION': JSON.stringify(configProject.version)
             }),

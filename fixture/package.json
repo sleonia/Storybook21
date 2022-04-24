@@ -6,6 +6,6 @@
         "build:storybook": "npx storybook21 build --config=\"./storybook.config.ts\""
     },
     "dependencies": {
-        "storybook21": "file:storybook21-0.0.4.tgz"
+        "storybook21": "file:storybook21-0.0.5.tgz"
     }
 }
