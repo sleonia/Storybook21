@@ -1,6 +1,7 @@
-import { Command, createOption } from 'commander';
+import { Command, createOption } from 'commander'
 
 import { version, description } from '../package.json'
+
 import { runServer } from './server'
 import { runBuild } from './build'
 import { init } from './utils/init'
@@ -9,7 +10,7 @@ import { WebpackMode } from './types'
 
 const DEFAULT_PORT = 4242
 
-const program = new Command();
+const program = new Command()
 
 const configOption = createOption('-c, --config <string>', 'Path to config file')
 const modeOption = createOption('-m, --mode <string>', 'Mode for run app')
@@ -32,14 +33,14 @@ const parseOptions = ({
 program
     .name('🌈 Storybook 21 🌈')
     .description(description)
-    .version(version);
+    .version(version)
 
 program
     .command('init')
     .description('initialize storybook in your app 📦')
     .addOption(initOption)
-    .action(({ y }: { y: boolean }) => {
-        init(y)
+    .action(({ yes }: { yes: boolean }) => {
+        void init(yes)
     })
 
 program
@@ -50,7 +51,7 @@ program
     .addOption(portOption)
     .action((str: Record<string, string | undefined>) => {
         const options = parseOptions(str)
-        runServer(options)
+        void runServer(options)
     })
 
 program
@@ -60,9 +61,9 @@ program
     .requiredOption(configOption.flags, configOption.description)
     .action((str: Record<string, string | undefined>) => {
         const options = parseOptions(str)
-        runBuild(options)
+        void runBuild(options)
     })
 
-program.showHelpAfterError('(Try --help for show information)');
+program.showHelpAfterError('(Try --help for show information)')
 
 export { program }

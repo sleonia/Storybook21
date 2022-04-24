@@ -1,8 +1,8 @@
-import type { Configuration } from 'webpack';
+import type { Configuration } from 'webpack'
 
 export enum WebpackMode {
-    Development = "development",
-    Production = "production",
+    Development = 'development',
+    Production = 'production'
 }
 
 export type CommanderStartOptions = {

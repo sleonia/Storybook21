@@ -9,6 +9,9 @@ module.exports = {
             webpack: {
                 config: './webpack.config.ts',
                 extensions: ['.js', '.ts', '.tsx', '.jsx', '.json']
+            },
+            node: {
+                extensions: ['.js', '.ts', '.json']
             }
         }
     },
@@ -26,7 +29,8 @@ module.exports = {
             rules: {
                 '@typescript-eslint/no-confusing-void-expression': 'off',
                 'react/jsx-no-bind': 'off',
-                'react/forbid-component-props': 'off'
+                'react/forbid-component-props': 'off',
+                '@sbol/common/no-package-json-imports': 'off'
             }
         },
         {

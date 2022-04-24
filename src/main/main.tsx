@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from 'react'
-import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
+import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react'
 
 import { Footer } from './footer'
 
 export const Main = (): JSX.Element => {
-    function handleEditorValidation(markers) {
+    function handleEditorValidation (markers) {
         // model markers
-        markers.forEach(marker => console.log("onValidate:", marker.message));
+        markers.forEach((marker) => console.log('onValidate:', marker.message))
     }
     return (
         <main style={{ flexGrow: 1 }}>
@@ -20,5 +20,5 @@ export const Main = (): JSX.Element => {
                 // onChange={(value) => console.log(value)}
             />
         </main>
-    );
+    )
 }

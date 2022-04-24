@@ -20,12 +20,15 @@ const navigation: Array<Navigation> = [
         title: 'Preview',
         mdx: './preview.mdx',
         children: []
-    },
+    }
 ]
 
 const config: Config = {
     /** document.title */
     title: '🌈 Your nice title 🌈',
+
+    /** Your app version */
+    version: '1.0.0',
 
     /** You may to include css file or link to css resource */
     globalStyle: '',
@@ -40,7 +43,7 @@ const config: Config = {
     entry: '',
 
     /** Demo file for provide to demo custom utils.
-     * 
+     *
      * ℹ️ Use only default export
     */
     demo: './demo/index.ts',
@@ -48,7 +51,7 @@ const config: Config = {
     /** Array of polyfills which include for demo page */
     polyfills: [],
 
-    /** */ //TODO
+    /** */ // TODO
     theme: '',
 
     /** */

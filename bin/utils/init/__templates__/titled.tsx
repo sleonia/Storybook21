@@ -9,7 +9,7 @@ export type TitledProps = {
 export const Titled = ({ title, children, description }: TitledProps): JSX.Element => (
     <div>
         <h1>{title}</h1>
-        {description && <p content={description} />}
+        {description && <p>{description}</p>}
         {children}
     </div>
 )

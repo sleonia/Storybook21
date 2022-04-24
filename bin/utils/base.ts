@@ -1,29 +1,36 @@
-import { Config } from './../../@types/index.d';
-// import { DefinePlugin } from 'webpack';
-import webpack from 'webpack';
-import type { Configuration } from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path'
 
+import webpack from 'webpack'
+import type { Configuration } from 'webpack'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+
+import type { Config } from '../../@types/index.d'
 import config from '../../webpack.config'
 
 const DEFAULT_CONFIG = {
     title: '🌈 Nice title 🌈',
+    version: '1.0.0',
+    storybookContext: '/storybook'
 }
 
-export const createBaseConfig = (
+export const createBaseConfig = async (
     configPath: string,
     mode: Exclude<Configuration['mode'], 'none'>
-): Configuration => {
-    const configProject = { title: '', version: '1.0.0' }
-    // const configProject = require(`${process.cwd()}/${configPath}`) as Config
+): Promise<Configuration> => {
+    const { default: configProject } = await import(`${process.cwd()}/${configPath}`) as Record<'default', Config>
 
-    return ({
+    return {
         ...config,
         mode,
         plugins: [
-          ...config.plugins,
+            ...config.plugins,
             new webpack.DefinePlugin({
-                'process.env.VERSION': JSON.stringify(configProject.version)
+                'process.env.VERSION': JSON.stringify(configProject.version || DEFAULT_CONFIG.version),
+                'process.env.NAVIGATION': JSON.stringify(configProject.navigation),
+                'process.env.CWD': JSON.stringify(process.cwd()),
+                'process.env.CWD_STORYBOOK': JSON.stringify(
+                    path.resolve(process.cwd(), configProject.storybookContext || '/storybook')
+                )
             }),
             new HtmlWebpackPlugin({
                 templateContent: `
@@ -39,7 +46,6 @@ export const createBaseConfig = (
                   </html>
               `
             })
-        ],
-    });
+        ]
+    }
 }
-

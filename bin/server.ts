@@ -1,11 +1,11 @@
-import { DIST } from './../constants';
-import { checkPort } from './utils/check-port';
 import path from 'path'
 
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 import type { Configuration } from 'webpack-dev-server'
 
+import { checkPort } from './utils/check-port'
+import { DIST } from './../constants'
 import { createBaseConfig } from './utils/base'
 import type { CommanderStartOptions } from './types'
 
@@ -19,7 +19,7 @@ export const runServer = async ({
 }: CommanderStartOptions
 ): Promise<void> => {
     const freePort = await checkPort(port)
-    const baseConfig = createBaseConfig(configPath, mode)
+    const baseConfig = await createBaseConfig(configPath, mode)
     const compiler = webpack(baseConfig)
 
     const devServerOptions: Configuration = {
@@ -40,6 +40,6 @@ export const runServer = async ({
     const host = `http://${devServerOptions.allowedHosts}:${freePort}`
 
     new WebpackDevServer(devServerOptions, compiler).startCallback(() => {
-        console.log(`💥 Server listening on ${host} 💥`)        
+        console.log(`💥 Server listening on ${host} 💥`)
     })
 }

@@ -6,13 +6,14 @@ import {
     ColorSchemeProvider,
     Group
 } from '@mantine/core'
-import { useMediaQuery, useHotkeys, useLocalStorage } from '@mantine/hooks'
+import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import type { ColorScheme } from '@mantine/core'
 
 import './i18next'
 
 import { THEMES } from './constants'
 import { HotKeys } from './hotkeys'
+import { DataProvider } from './data-provider'
 import { Header } from './header'
 import { Sidebar } from './sidebar'
 import { Main } from './main'
@@ -41,34 +42,28 @@ export const App = (): JSX.Element => {
 
     return (
         <BrowserRouter>
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <ColorSchemeProvider
-                            colorScheme={colorScheme}
-                            toggleColorScheme={toggleColorScheme}
-                        >
-                            <MantineProvider
-                                theme={{ colorScheme }}
-                                withGlobalStyles
-                            >
-                                <Global styles={GlobalStyles} />
-                                <div className={classes.wrapper}>
-                                    <Header
-                                        isSidebarOpened={isSidebarOpened}
-                                        handleSidebarOpened={handleSidebarOpened}
-                                    />
-                                    <Group align="start" spacing={0} noWrap>
-                                        <Sidebar isSidebarOpened={isSidebarOpened} />
-                                        <Main />
-                                    </Group>
-                                </div>
-                            </MantineProvider>
-                        </ColorSchemeProvider>
-                    }
-                />
-            </Routes>
+            <DataProvider>
+                <ColorSchemeProvider
+                    colorScheme={colorScheme}
+                    toggleColorScheme={toggleColorScheme}
+                >
+                    <MantineProvider
+                        theme={{ colorScheme }}
+                        withGlobalStyles
+                    >
+                        <Global styles={GlobalStyles} />
+                        <div className={classes.wrapper}>
+                            <Header
+                                isSidebarOpened={isSidebarOpened}
+                                handleSidebarOpened={handleSidebarOpened} />
+                            <Group align="start" spacing={0} noWrap>
+                                <Sidebar isSidebarOpened={isSidebarOpened} />
+                                <Main />
+                            </Group>
+                        </div>
+                    </MantineProvider>
+                </ColorSchemeProvider>
+            </DataProvider>
         </BrowserRouter>
     )
 }

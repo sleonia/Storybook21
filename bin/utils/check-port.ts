@@ -1,10 +1,10 @@
-import inquirer from 'inquirer';
+import inquirer from 'inquirer'
 
 const getQuestion = (port: number) => ({
     type: 'confirm',
     name: 'isAnotherPort',
     message: `Port ${port} is already busy. Try another one?`,
-    default: false,
+    default: false
 })
 
 const isPortFree = (port: number): Promise<boolean> =>
@@ -30,9 +30,9 @@ export const checkPort = (port: number): Promise<number> => isPortFree(port)
             .then(({ isAnotherPort }: Record<string, boolean>) => {
                 if (isAnotherPort) {
                     return checkPort(port + 1)
-                } else {
-                    process.exit(1)
                 }
+                process.exit(1)
+                
             })
             .catch((e: unknown) => {
                 console.log(e)

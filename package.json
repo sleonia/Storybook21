@@ -5,7 +5,10 @@
     "bin": {
         "storybook21": "./bin/storybook.ts"
     },
-    "scripts": {},
+    "scripts": {
+        "start:storybook": "npx storybook21 start --config=\"./storybook.config.ts\"",
+        "build:storybook": "npx storybook21 build --config=\"./storybook.config.ts\""
+    },
     "types": "./@types/index.d.ts",
     "repository": {
         "type": "git",

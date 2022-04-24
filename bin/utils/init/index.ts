@@ -4,10 +4,11 @@ import {
     existsSync,
     writeFileSync
 } from 'fs'
-import chalk from 'chalk';
-import inquirer from 'inquirer'
 import { resolve, basename } from 'path'
-import glob from "glob";
+
+import chalk from 'chalk'
+import inquirer from 'inquirer'
+import glob from 'glob'
 
 const DEMO_DIR = 'demo'
 const STORYBOOK_DIR = 'storybook'
@@ -16,8 +17,8 @@ const TEMPLATES_DIR = '__templates__'
 const getQuestion = () => ({
     type: 'confirm',
     name: 'defaultConfig',
-    message: `Create default config?`,
-    default: false,
+    message: 'Create default config?',
+    default: false
 })
 
 const createConfigDirs = (path: string, pattern: string): void => {
@@ -66,7 +67,7 @@ const addScriptsToPackageJson = (): void => {
     const getTemplate = (mode: 'start' | 'build') => `npx storybook21 ${mode} --config="./storybook.config.ts"`
 
     if (json.scripts['start:storybook'] || json.scripts['build:storybook']) {
-        console.log(chalk.red(`start:storybook or build:storybook scripts are already exist 😰`))
+        console.log(chalk.red('start:storybook or build:storybook scripts are already exist 😰'))
         return
     }
 
@@ -76,9 +77,9 @@ const addScriptsToPackageJson = (): void => {
         'build:storybook': getTemplate('build')
     }
 
-    writeFileSync(path, JSON.stringify(json, null, 4) + '\n');
+    writeFileSync(path, `${JSON.stringify(json, null, 4)}\n`)
 
-    console.log(`✅ package.json is updated`)
+    console.log('✅ package.json is updated')
 }
 
 const initHelper = (): void => {
@@ -89,7 +90,7 @@ const initHelper = (): void => {
     
     console.log(
         '✅ App inited\n',
-        'Try ', chalk.blue('npm run start:storybook'),
+        'Try ', chalk.blue('npm run start:storybook')
     )
 }
 
@@ -97,10 +98,10 @@ export const init = async (isY: boolean): Promise<unknown> => {
     if (isY) {
         initHelper()
         return Promise.resolve()
-    } else {
-        const { defaultConfig } = await inquirer.prompt([getQuestion()]);
-        if (defaultConfig) {
-            initHelper();
-        }
     }
+    const { defaultConfig } = await inquirer.prompt([getQuestion()])
+    if (defaultConfig) {
+        initHelper()
+    }
+    
 }

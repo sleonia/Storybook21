@@ -5,21 +5,24 @@ const navigation: Array<Navigation> = [
         link: '/',
         title: 'Main page',
         mdx: './index.mdx',
-        hidden: true,
-        children: []
+        hidden: true
     },
     {
         link: '/components',
         title: 'Компоненты',
         mdx: './components.mdx',
         showMenu: true,
-        children: []
+        children: [
+            {
+                link: 'demo-button',
+                title: 'Demo button'
+            }
+        ]
     },
     {
         link: '/preview',
         title: 'Preview',
-        mdx: './preview.mdx',
-        children: []
+        mdx: './preview.mdx'
     },
 ]
 

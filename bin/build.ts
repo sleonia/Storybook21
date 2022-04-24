@@ -3,24 +3,20 @@ import { resolve } from 'path'
 import webpack from 'webpack'
 import { mergeWithCustomize, customizeObject } from 'webpack-merge'
 import WebpackNotifierPlugin from 'webpack-notifier'
+
 import { DIST } from '../constants'
 
 import { createBaseConfig } from './utils/base'
 import type { CommanderStartOptions } from './types'
 
-export const runBuild = ({
+export const runBuild = async ({
     configPath,
-    mode,
-    port
-}: CommanderStartOptions): void => {
-    /** make dynamic reguire for load config file */
-    // TODO uncomment
-    // const configProject = require(`${process.cwd()}/${configPath}`)
-    const baseConfig = createBaseConfig(configPath, mode)
+    mode
+}: CommanderStartOptions): Promise<void> => {
+    const baseConfig = await createBaseConfig(configPath, mode)
     baseConfig.plugins.push(
-        /** Added plugin here because only here i know free port */
         new WebpackNotifierPlugin({
-            title: `Ready 🦊`,
+            title: 'Ready 🦊',
             emoji: true
         })
     )
@@ -30,18 +26,18 @@ export const runBuild = ({
         customizeObject: customizeObject({ 'output.path': 'replace' })
     })(
         baseConfig, {
-        output: {
-            path: resolve(process.cwd(), DIST)
-            // TODO uncomment
+            output: {
+                path: resolve(process.cwd(), DIST)
+            // TODO  билбидм туда, куда захотел пользователь
             // path: resolve(process.cwd(), configProject.output || DIST)
-        },
+            },
 
-        devtool: void 0,
+            devtool: void 0,
 
-        stats: {
-            chunks: false
-        }
-    })
+            stats: {
+                chunks: false
+            }
+        })
 
     webpack(config, (error, stats) => {
         if (error) {

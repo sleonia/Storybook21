@@ -1,8 +1,8 @@
 import type { Configuration } from 'webpack'
 
 export type Navigation = {
-    link?: string
-    title?: string
+    link: string
+    title: string
     mdx?: string
     components?: string
     showMenu?: boolean
