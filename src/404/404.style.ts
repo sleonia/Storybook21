@@ -8,10 +8,10 @@ export const MobileStyles: CSSObject = {
 }
 
 export const use404Styles = createStyles(() => ({
-    wrapper: {
-        height: ScrollStyles.height,
-        width: '100%'
-    },
+    // wrapper: {
+    //     height: ScrollStyles.height,
+    //     width: '100%'
+    // },
     paper: {
         width: 600
     },

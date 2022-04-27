@@ -19,6 +19,7 @@ import { Sidebar } from './sidebar'
 import { Main } from './main'
 import { NotFound } from './404'
 import { GlobalStyles, useAppStyles } from './app.style'
+import { Footer } from './main/footer'
 
 // TODO разделить роутинг и компоненту
 export const App = (): JSX.Element => {
@@ -60,10 +61,13 @@ export const App = (): JSX.Element => {
                             />
                             <Group align="start" spacing={0} noWrap>
                                 <Sidebar isSidebarOpened={isSidebarOpened} />
-                                <Routes>
-                                    <Route path="/" element={<Main />} />
-                                    <Route path="*" element={<NotFound />} />
-                                </Routes>
+                                <div className={classes.contentContainer}>
+                                    <Routes>
+                                        <Route path="/" element={<Main />} />
+                                        <Route path="*" element={<NotFound />} />
+                                    </Routes>
+                                    <Footer />
+                                </div>
                             </Group>
                         </div>
                     </MantineProvider>

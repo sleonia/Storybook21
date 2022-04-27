@@ -3,7 +3,7 @@ import Editor from '@monaco-editor/react'
 import type { OnValidate } from '@monaco-editor/react'
 import { Paper, ScrollArea, useMantineTheme } from '@mantine/core'
 
-import { Footer } from './footer'
+// import { Footer } from './footer'
 
 export const Main = (): JSX.Element => {
     const { colorScheme } = useMantineTheme()
@@ -28,7 +28,7 @@ export const Main = (): JSX.Element => {
                     }}
                 />
             </Paper>
-            <Footer />
+            {/* <Footer /> */}
         </main>
     )
 }

@@ -16,7 +16,7 @@ export const NotFound = (): JSX.Element => {
             className={classes.wrapper}
         >
             <MediaQuery smallerThan="sm" styles={MobileStyles}>
-                <Paper shadow="lg" p={40} className={classes.paper}>
+                <Paper shadow="sm" p={40} className={classes.paper}>
                     <Stack spacing="xs">
                         <Center>
                             <ThemeIcon size={300}>
