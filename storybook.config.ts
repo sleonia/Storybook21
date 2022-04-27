@@ -13,7 +13,13 @@ const navigation: Array<Navigation> = [
         title: 'Компоненты',
         mdx: './components.mdx',
         showMenu: true,
-        children: []
+        children: [
+            {
+                link: '/components/custom-component',
+                title: 'Custom Component',
+                mdx: './index.mdx' //TODO
+            }
+        ]
     },
     {
         link: '/preview',

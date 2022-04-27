@@ -10,32 +10,31 @@ import {
     useSidebarStyles
 } from './sidebar.style'
 
-const RENAME_ME = () => {
-    const makeNavigation = (navigation: []) => (<>
-        {navigation.map((item) => !item.hidden && (
-            <>
-                {!item.mdx && item.children.length === 0 ? (
-                    <Text>{item.title}</Text>
-                ) : (
-                    <Text>{item.title}</Text>
-                )}
-                {makeNavigation(item.children)}
-            </>
-        ))}
-    </>)
-    return makeNavigation
-}
+// const RENAME_ME = () => {
+//     const makeNavigation = (navigation: []) => (<>
+//         {navigation.map((item) => !item.hidden && (
+//             <>
+//                 {!item.mdx && item.children.length === 0 ? (
+//                     <Text>{item.title}</Text>
+//                 ) : (
+//                     <Text>{item.title}</Text>
+//                 )}
+//                 {makeNavigation(item.children)}
+//             </>
+//         ))}
+//     </>)
+//     return makeNavigation
+// }
 
 export const Sidebar = ({ isSidebarOpened }: SidebarProps): JSX.Element => {
     const { classes } = useSidebarStyles(isSidebarOpened)
     const { navigation, navigationFlat } = useDataProvider()
 
-
     return (
         <MediaQuery largerThan="sm" styles={MobileStyles}>
             <aside className={classes.sidebar}>
                 <ScrollArea style={ScrollStyles}>
-                    {RENAME_ME()(navigation)}
+                    {/* {RENAME_ME()(navigation)} */}
                     <Accordion multiple>
                         <Accordion.Item label="Inputs" />
                     </Accordion>

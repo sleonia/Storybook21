@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import {
     Global,
     MantineProvider,
@@ -16,10 +16,9 @@ import { HotKeys } from './hotkeys'
 import { DataProvider } from './data-provider'
 import { Header } from './header'
 import { Sidebar } from './sidebar'
-import { Main } from './main'
-import { NotFound } from './404'
 import { GlobalStyles, useAppStyles } from './app.style'
 import { Footer } from './main/footer'
+import { Routing } from './routing'
 
 // TODO разделить роутинг и компоненту
 export const App = (): JSX.Element => {
@@ -62,10 +61,7 @@ export const App = (): JSX.Element => {
                             <Group align="start" spacing={0} noWrap>
                                 <Sidebar isSidebarOpened={isSidebarOpened} />
                                 <div className={classes.contentContainer}>
-                                    <Routes>
-                                        <Route path="/" element={<Main />} />
-                                        <Route path="*" element={<NotFound />} />
-                                    </Routes>
+                                    <Routing />
                                     <Footer />
                                 </div>
                             </Group>
