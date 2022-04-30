@@ -11,7 +11,7 @@ const navigation: Array<Navigation> = [
     {
         link: '/components',
         title: 'Компоненты',
-        // mdx: './components.mdx',
+        mdx: './components.mdx',
         showMenu: true,
         children: [
             {
@@ -55,13 +55,13 @@ const config: Config = {
     /** Entry point in your app. Use in webpack */
     entry: '',
 
-    /** Demo file for provide to demo custom utils.
+    /** Playground file with exports for provide to playground custom component, utils, etc.
      *
      * ℹ️ Use only default export
     */
-    demo: './demo/index.ts',
+    playground: './playground/index.tsx',
 
-    /** Array of polyfills which include for demo page */
+    /** Array of polyfills which include for playground page */
     polyfills: [],
 
     /** */ // TODO
@@ -73,7 +73,7 @@ const config: Config = {
     /** Context for provide mdx navigation */
     storybookContext: './storybook',
 
-    /** Array of navigation config for demo pages */
+    /** Array of navigation config for playground pages */
     navigation,
 
     /** Custom webpack config which merge with webpack.config in storybook */

@@ -17,7 +17,7 @@ export type Config = {
     componentsDir: string
     themeProvider?: string
     entry?: string
-    demo?: string
+    playground?: string
     polyfills?: Array<string>
     theme?: string
     output?: string

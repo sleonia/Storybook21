@@ -5,7 +5,10 @@
     "bin": {
         "storybook21": "./bin/storybook.ts"
     },
-    "scripts": {},
+    "scripts": {
+        "start:storybook": "npx storybook21 start --config=\"./storybook.config.ts\"",
+        "build:storybook": "npx storybook21 build --config=\"./storybook.config.ts\""
+    },
     "types": "./@types/index.d.ts",
     "repository": {
         "type": "git",
@@ -36,7 +39,7 @@
         "@emotion/styled": "11.6.0",
         "@mantine/core": "^4.1.4",
         "@mantine/hooks": "^4.1.4",
-        "@mdx-js/loader": "2.1.1",
+        "@mdx-js/loader": "^2.1.1",
         "@mdx-js/react": "^2.1.1",
         "@monaco-editor/react": "^4.4.4",
         "chalk": "^4.1.2",
@@ -56,6 +59,7 @@
         "react-dev-utils": "12.0.1",
         "react-dom": "^17.0.2",
         "react-i18next": "^11.16.7",
+        "react-live": "^2.4.1",
         "react-router-dom": "^6.3.0",
         "style-loader": "^3.3.1",
         "tabler-icons-react": "^1.46.0",

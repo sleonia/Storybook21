@@ -46,7 +46,7 @@ const config: Config = {
      * 
      * ℹ️ Use only default export
     */
-    demo: './demo/index.ts',
+    playground: './playground/index.tsx',
 
     /** Array of polyfills which include for demo page */
     polyfills: [],

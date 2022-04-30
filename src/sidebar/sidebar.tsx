@@ -7,10 +7,7 @@ import { useDataProvider } from '../data-provider'
 import { ScrollStyles } from '../constants'
 
 import type { SidebarProps } from './types'
-import {
-    MobileStyles,
-    useSidebarStyles
-} from './sidebar.style'
+import { MobileStyles, useSidebarStyles } from './sidebar.style'
 
 const createNavigation = (navigation?: Array<Navigation>): JSX.Element => (
     <Stack component="ul">

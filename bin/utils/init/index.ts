@@ -10,7 +10,7 @@ import chalk from 'chalk'
 import inquirer from 'inquirer'
 import glob from 'glob'
 
-const DEMO_DIR = 'demo'
+const PLAYGROUND_DIR = 'playground'
 const STORYBOOK_DIR = 'storybook'
 const TEMPLATES_DIR = '__templates__'
 
@@ -83,7 +83,7 @@ const addScriptsToPackageJson = (): void => {
 }
 
 const initHelper = (): void => {
-    createConfigDirs(DEMO_DIR, `${__dirname}/${TEMPLATES_DIR}/*.tsx`)
+    createConfigDirs(PLAYGROUND_DIR, `${__dirname}/${TEMPLATES_DIR}/*.tsx`)
     createConfigDirs(STORYBOOK_DIR, `${__dirname}/${TEMPLATES_DIR}/*.mdx`)
     createConfigFile(`${__dirname}/${TEMPLATES_DIR}/storybook.config.ts`)
     addScriptsToPackageJson()
@@ -104,4 +104,5 @@ export const init = async (isY: boolean): Promise<unknown> => {
         initHelper()
     }
     
+    return Promise.resolve()
 }

@@ -6,6 +6,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 import type { Config } from '../../@types/index.d'
 import config from '../../webpack.config'
+import { ALIASES } from '../../constants'
 
 const DEFAULT_CONFIG = {
     title: '🌈 Nice title 🌈',
@@ -22,8 +23,18 @@ export const createBaseConfig = async (
     return {
         ...config,
         mode,
+        // entry: [], // FIXME брать entry из конфига пользователя
+        resolve: {
+            ...config.resolve,
+            alias: {
+                // TODO раскоментить для проверок вне src
+                // [ALIASES.library]: path.resolve(process.cwd(), configProject.entry || ''),
+                [ALIASES.playground]: path.resolve(process.cwd(), configProject.playground || ''),
+                cwd: path.resolve(process.cwd())
+            }
+        },
         plugins: [
-            ...config.plugins,
+            ...config.plugins || [],
             new webpack.DefinePlugin({
                 'process.env.VERSION': JSON.stringify(configProject.version || DEFAULT_CONFIG.version),
                 'process.env.NAVIGATION': JSON.stringify(configProject.navigation),
