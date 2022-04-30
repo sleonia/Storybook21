@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react'
 
 export const HEADER_HEIGHT = '60px'
-export const SIDEBAR_WIDTH = '260px'
+export const SIDEBAR_WIDTH = '300px'
 
 export const THEMES = {
     light: 'light',

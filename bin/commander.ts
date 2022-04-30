@@ -22,7 +22,7 @@ const parseOptions = ({
     mode,
     port
 }: Record<string, string | undefined>
-): Required<CommanderStartOptions> => ({
+): NonNullable<CommanderStartOptions> => ({
     configPath: config,
     mode: mode === WebpackMode.Development || mode === WebpackMode.Production
         ? mode

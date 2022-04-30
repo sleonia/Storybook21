@@ -1,6 +1,8 @@
-import React from 'react'
-import { MediaQuery, Accordion, ScrollArea, Text } from '@mantine/core'
+import React, { useMemo } from 'react'
+import { Link } from 'react-router-dom'
+import { MediaQuery, ScrollArea, Text, Stack, Container } from '@mantine/core'
 
+import type { Navigation } from '../../@types'
 import { useDataProvider } from '../data-provider'
 import { ScrollStyles } from '../constants'
 
@@ -10,51 +12,47 @@ import {
     useSidebarStyles
 } from './sidebar.style'
 
-// const RENAME_ME = () => {
-//     const makeNavigation = (navigation: []) => (<>
-//         {navigation.map((item) => !item.hidden && (
-//             <>
-//                 {!item.mdx && item.children.length === 0 ? (
-//                     <Text>{item.title}</Text>
-//                 ) : (
-//                     <Text>{item.title}</Text>
-//                 )}
-//                 {makeNavigation(item.children)}
-//             </>
-//         ))}
-//     </>)
-//     return makeNavigation
-// }
+const createNavigation = (navigation?: Array<Navigation>): JSX.Element => (
+    <Stack component="ul">
+        {navigation?.map((item) => !item.hidden && (
+            <li key={item.link}>
+                {item.mdx ? (
+                    <Text
+                        variant="link"
+                        size="md"
+                        component={Link}
+                        to={item.link}
+                        underline
+                        weight={item.children && 500}
+                    >
+                        {item.title}
+                    </Text>
+                ) : (
+                    <Text size="md">{item.title}</Text>
+                )}
+                {createNavigation(item.children)}
+            </li>
+        ))}
+    </Stack>
+)
 
 export const Sidebar = ({ isSidebarOpened }: SidebarProps): JSX.Element => {
     const { classes } = useSidebarStyles(isSidebarOpened)
-    const { navigation, navigationFlat } = useDataProvider()
+    const { navigation } = useDataProvider()
+    const sidebarNavigation = useMemo(() => createNavigation(navigation), [navigation])
 
     return (
         <MediaQuery largerThan="sm" styles={MobileStyles}>
             <aside className={classes.sidebar}>
                 <ScrollArea style={ScrollStyles}>
-                    {/* {RENAME_ME()(navigation)} */}
-                    <Accordion multiple>
-                        <Accordion.Item label="Inputs" />
-                    </Accordion>
-                    {/* <Accordion multiple>
-                        <Accordion.Item label="Inputs">
-                            <Accordion>
-                                <Accordion.Item label="TextField">
-                                    <Text>TextField Plain</Text>
-                                    <Text>TextField Multiline</Text>
-                                    <Text>TextField Masked</Text>
-                                    <Text>TextField LocalPhone</Text>
-                                    <Text>TextField Password</Text>
-                                    <Text>TextField Counter</Text>
-                                    <Text>TextField Dropdown</Text>
-                                    <Text>TextField Currency Select</Text>
-                                    <Text>TextField Money</Text>
-                                </Accordion.Item>
-                            </Accordion>
-                        </Accordion.Item>
-                    </Accordion> */}
+                    <Container
+                        className={classes.container}
+                        component="nav"
+                        size="xs"
+                        px="xs"
+                    >
+                        {sidebarNavigation}
+                    </Container>
                 </ScrollArea>
             </aside>
         </MediaQuery>

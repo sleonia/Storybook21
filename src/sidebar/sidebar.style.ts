@@ -17,5 +17,16 @@ export const useSidebarStyles = createStyles((theme, isSidebarOpened: boolean) =
         height: ScrollStyles.height,
         borderRight: `1px solid ${theme.colorScheme === THEMES.light ? theme.colors.gray[2] : theme.colors.dark[7]}`,
         backgroundColor: theme.colorScheme === THEMES.light ? theme.colors.gray[0] : theme.colors.dark[8]
+    },
+    container: {
+        paddingTop: '20px',
+        paddingBottom: '20px',
+
+        '& ul': {
+            listStyle: 'none'
+        },
+        '& ul > li': {
+            marginLeft: '12px'
+        }
     }
 }))

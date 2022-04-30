@@ -16,7 +16,7 @@ export const runServer = async ({
     configPath,
     mode,
     port
-}: CommanderStartOptions
+}: NonNullable<Required<CommanderStartOptions>>
 ): Promise<void> => {
     const freePort = await checkPort(port)
     const baseConfig = await createBaseConfig(configPath, mode)
