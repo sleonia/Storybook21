@@ -23,5 +23,10 @@
     "404.description": "You find a secret page",
     "404.reward": "Get a reward 🎁",
     "cat-geneator.href": "https://randomlistgenerator.com/cat-breeds",
-    "cat-geneator.title": "Enjoy this cats generator"
+    "cat-geneator.title": "Enjoy this cats generator",
+
+    "code-block.toggle-code": "Toggle code",
+    "code-block.copy-code": "Copy code",
+    "code-block.copy-code.compeleted": "Copied!"
+
 }
