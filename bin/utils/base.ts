@@ -23,7 +23,6 @@ export const createBaseConfig = async (
     return {
         ...config,
         mode,
-        // entry: [], // FIXME брать entry из конфига пользователя
         resolve: {
             ...config.resolve,
             alias: {
@@ -46,14 +45,14 @@ export const createBaseConfig = async (
             new HtmlWebpackPlugin({
                 templateContent: `
                 <!DOCTYPE html>
-                  <html lang="en-EN">
-                    <head>
-                      <meta charset="UTF-8" />
-                      <title>${configProject.title || DEFAULT_CONFIG.title}</title>
-                    </head>
-                    <body>
-                      <div id="root"></div>
-                    </body>
+                    <html lang="en-EN">
+                        <head>
+                            <meta charset="UTF-8" />
+                            <title>${configProject.title || DEFAULT_CONFIG.title}</title>
+                        </head>
+                        <body>
+                            <div id="root"></div>
+                        </body>
                   </html>
               `
             })

@@ -6,8 +6,9 @@
         "storybook21": "./bin/storybook.ts"
     },
     "scripts": {
-        "start:storybook": "npx storybook21 start --config=\"./storybook.config.ts\"",
-        "build:storybook": "npx storybook21 build --config=\"./storybook.config.ts\""
+        "eslint": "npx eslint .",
+        "eslint:fix": "npx eslint . --fix",
+        "eslint:errors": "npx eslint . --quiet"
     },
     "types": "./@types/index.d.ts",
     "repository": {

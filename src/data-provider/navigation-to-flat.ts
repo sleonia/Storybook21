@@ -1,23 +1,17 @@
-import omit from 'lodash.omit'
-
+// @ts-nocheck
+// TODO
 import type { Navigation } from '../../@types'
 
-import type { Require, NavigationFlat } from './types'
+import type { Require } from './types'
 
 const requireCwd = (require as unknown as Record<'context', (path?: string) => Require>).context(process.env.CWD_STORYBOOK)
 
-export const navigationToFlat = (
-    navigation: Array<Navigation> = [],
-    parentLink = ''
-): Array<NavigationFlat> => navigation.reduce((memo, branch) => {
-    const newBranch = omit(branch, 'mdx') as NavigationFlat
-    newBranch.link = parentLink + branch.link
+export const navigationToFlat = (navigation: Array<Navigation> = [], parentLink = '') => navigation.reduce((memo, branch) => {
+    branch.link = parentLink + branch.link
 
     if (branch.mdx) {
-        newBranch.mdx = requireCwd(branch.mdx).default as unknown as NavigationFlat['mdx']
+        branch.mdx = requireCwd(branch.mdx).default
     }
 
-    memo.push(newBranch, ...navigationToFlat(branch.children, branch.link))
-
-    return memo
-}, [] as Array<NavigationFlat>)
+    return [...memo, branch, ...navigationToFlat(branch.children, branch.link)]
+}, [])
