@@ -3,21 +3,24 @@ import { MediaQuery, Group, Kbd } from '@mantine/core'
 
 import { Logo } from '../../components'
 
+import {
+    LogoMediaStyles,
+    LogoBlockMediaStyles,
+    KbdMediaStyles
+} from './logo-block.style'
+
 export const LogoBlock = (): JSX.Element => (
     <MediaQuery
         smallerThan="sm"
-        styles={{
-            justifyContent: 'center',
-            width: '100%'
-        }}
+        styles={LogoBlockMediaStyles}
     >
         <Group>
-            <MediaQuery smallerThan="sm" styles={{ width: '100%', justifyContent: 'center' }}>
+            <MediaQuery smallerThan="sm" styles={LogoMediaStyles}>
                 <Group>
                     <Logo />
                 </Group>
             </MediaQuery>
-            <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <MediaQuery smallerThan="sm" styles={KbdMediaStyles}>
                 <Kbd>{process.env.VERSION}</Kbd>
             </MediaQuery>
         </Group>

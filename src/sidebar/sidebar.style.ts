@@ -6,6 +6,8 @@ import type { CSSObject } from '@mantine/core'
 
 import { THEMES, ScrollStyles, SIDEBAR_WIDTH } from '../constants'
 
+export const BOLD_LINK_FONT = 500
+
 export const MobileStyles: CSSObject = {
     width: SIDEBAR_WIDTH
 }

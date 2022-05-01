@@ -10,3 +10,5 @@ export type CommanderStartOptions = {
     mode?: Exclude<Configuration['mode'], 'none'>
     port?: number
 }
+
+export type CommanderStartOptionsRequired = NonNullable<Required<CommanderStartOptions>>

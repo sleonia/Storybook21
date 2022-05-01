@@ -2,9 +2,9 @@ import React from 'react'
 import i18next from 'i18next'
 import { Stack, Container, Text, Divider, Group } from '@mantine/core'
 
-import { ExternalLink, Logo } from '../../components'
+import { ExternalLink, Logo } from '../components'
 
-import { useFooterStyles } from './footer.style'
+import { useFooterStyles, FOOTER_BOLD_FONT_WEIGHT } from './footer.style'
 
 export const Footer = (): JSX.Element => {
     const { classes } = useFooterStyles()
@@ -20,19 +20,19 @@ export const Footer = (): JSX.Element => {
                         </Stack>
                         <Group className={classes.wrapper} spacing="xl">
                             <Stack spacing="xs">
-                                <Text weight={700}>{i18next.t('footer.about.title')}</Text>
+                                <Text weight={FOOTER_BOLD_FONT_WEIGHT}>{i18next.t('footer.about.title')}</Text>
                                 <ExternalLink href={i18next.t('footer.about.contribute.href')}>
                                     <Text size="sm">{i18next.t('footer.about.contribute')}</Text>
                                 </ExternalLink>
                             </Stack>
                             <Stack spacing="xs">
-                                <Text weight={700}>{i18next.t('footer.community.title')}</Text>
+                                <Text weight={FOOTER_BOLD_FONT_WEIGHT}>{i18next.t('footer.community.title')}</Text>
                                 <ExternalLink href={i18next.t('github.me.link')}>
                                     <Text size="sm">{i18next.t('footer.community.follow-me-github')}</Text>
                                 </ExternalLink>
                             </Stack>
                             <Stack spacing="xs">
-                                <Text weight={700}>{i18next.t('footer.project.title')}</Text>
+                                <Text weight={FOOTER_BOLD_FONT_WEIGHT}>{i18next.t('footer.project.title')}</Text>
                                 <div>
                                     <ExternalLink href={i18next.t('footer.project.documentation.href')}>
                                         <Text size="sm">{i18next.t('footer.project.documentation')}</Text>

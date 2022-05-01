@@ -11,10 +11,7 @@ export const NotFound = (): JSX.Element => {
     const { classes } = use404Styles()
 
     return (
-        <Center
-            component="main"
-            className={classes.wrapper}
-        >
+        <Center component="main">
             <MediaQuery smallerThan="sm" styles={MobileStyles}>
                 <Paper shadow="sm" p={40} className={classes.paper}>
                     <Stack spacing="xs">

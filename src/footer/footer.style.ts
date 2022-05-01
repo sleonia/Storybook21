@@ -1,6 +1,8 @@
 import { createStyles } from '@mantine/core'
 
-import { THEMES } from '../../constants'
+import { THEMES } from '../constants'
+
+export const FOOTER_BOLD_FONT_WEIGHT = 700
 
 export const useFooterStyles = createStyles((theme) => ({
     footer: {

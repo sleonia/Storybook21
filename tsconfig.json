@@ -30,7 +30,8 @@
     ],
     "exclude": [
         "node_modules",
-        "**/*.spec.tsx"
+        "**/*.spec.tsx",
+        "**/*/storybook.config.ts"
     ],
     "ts-node": {
         "transpileOnly": true,

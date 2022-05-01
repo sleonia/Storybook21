@@ -9,10 +9,7 @@ import type { HeaderProps } from './types'
 import { Search } from './search'
 import { LogoBlock } from './logo-block'
 import { ThemeSwitcher } from './theme-switcher'
-import {
-    BurgerLargerMedia,
-    useHeaderStyles
-} from './header.style'
+import { useHeaderStyles } from './header.style'
 
 export const Header = ({
     isSidebarOpened,
@@ -20,11 +17,10 @@ export const Header = ({
 }: HeaderProps): JSX.Element => {
     const { classes } = useHeaderStyles()
 
-
     return (
         <header>
             <div className={classes.inner}>
-                <MediaQuery largerThan="sm" styles={BurgerLargerMedia}>
+                <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
                     <Burger
                         opened={isSidebarOpened}
                         onClick={handleSidebarOpened}

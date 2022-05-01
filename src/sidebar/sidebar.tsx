@@ -1,15 +1,28 @@
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { MediaQuery, ScrollArea, Text, Stack, Container } from '@mantine/core'
+import {
+    MediaQuery,
+    ScrollArea,
+    Text,
+    Stack,
+    Container
+} from '@mantine/core'
 
 import type { Navigation } from '../../@types'
-import { useDataProvider } from '../data-provider'
+import { useDataProvider } from '../data-provider/provider'
 import { ScrollStyles } from '../constants'
 
 import type { SidebarProps } from './types'
-import { MobileStyles, useSidebarStyles } from './sidebar.style'
+import {
+    MobileStyles,
+    useSidebarStyles,
+    BOLD_LINK_FONT
+} from './sidebar.style'
 
 const createNavigation = (navigation?: Array<Navigation>): JSX.Element => (
+    // comment: Mantine typings error
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     <Stack component="ul">
         {navigation?.map((item) => !item.hidden && (
             <li key={item.link}>
@@ -20,7 +33,7 @@ const createNavigation = (navigation?: Array<Navigation>): JSX.Element => (
                         component={Link}
                         to={item.link}
                         underline
-                        weight={item.children && 500}
+                        weight={item.children && BOLD_LINK_FONT}
                     >
                         {item.title}
                     </Text>
@@ -44,6 +57,9 @@ export const Sidebar = ({ isSidebarOpened }: SidebarProps): JSX.Element => {
                 <ScrollArea style={ScrollStyles}>
                     <Container
                         className={classes.container}
+                        // comment: Mantine typings error
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
                         component="nav"
                         size="xs"
                         px="xs"

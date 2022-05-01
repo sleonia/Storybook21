@@ -7,7 +7,7 @@ import type { Configuration } from 'webpack-dev-server'
 import { checkPort } from './utils/check-port'
 import { DIST } from './../constants'
 import { createBaseConfig } from './utils/base'
-import type { CommanderStartOptions } from './types'
+import type { CommanderStartOptionsRequired } from './types'
 
 /** Path where webpack find files after compile */
 const VIRTUAL_DIR = path.join(process.cwd(), DIST)
@@ -16,7 +16,7 @@ export const runServer = async ({
     configPath,
     mode,
     port
-}: NonNullable<Required<CommanderStartOptions>>
+}: CommanderStartOptionsRequired
 ): Promise<void> => {
     const freePort = await checkPort(port)
     const baseConfig = await createBaseConfig(configPath, mode)
@@ -38,7 +38,7 @@ export const runServer = async ({
         historyApiFallback: true
     }
 
-    const host = `http://${devServerOptions.allowedHosts}:${freePort}`
+    const host = `http://${devServerOptions.allowedHosts as string}:${freePort}`
 
     new WebpackDevServer(devServerOptions, compiler).startCallback(() => {
         console.log(`💥 Server listening on ${host} 💥`)

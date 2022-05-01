@@ -1,14 +1,13 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import type { Navigation } from '../@types'
-
 import { useDataProvider } from './data-provider'
+import type { NavigationFlat } from './data-provider'
 import { Main } from './main'
 import { NotFound } from './404'
 import { Mdx } from './mdx'
 
-const getMDXRoutes = (navigationFlat: Array<Navigation>) =>
+const getMDXRoutes = (navigationFlat: Array<NavigationFlat>): Array<JSX.Element | false | undefined | ''> =>
     navigationFlat.map(
         (navigation) => navigation.mdx && (
             <Route

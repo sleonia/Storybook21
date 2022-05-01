@@ -13,15 +13,15 @@ import { useCodeBlockStyles } from './code-block.style'
 import type { CodeBlockProps, LiveEditorProps } from './types'
 
 const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
-    const { classes } = useCodeBlockStyles()
-    const { colorScheme } = useMantineTheme()
-
     const [opened, setOpen] = useState(false)
     const clipboard = useClipboard({ timeout: 1000 })
 
+    const { classes } = useCodeBlockStyles()
+    const { colorScheme } = useMantineTheme()
+
     return (
         <LiveContext.Consumer>
-            {({ code, language, error }): JSX.Element => (
+            {({ code, error }): JSX.Element => (
                 <div className={classes.liveContextWrapper}>
                     <Group>
                         <Button
@@ -45,7 +45,7 @@ const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
                         <Paper shadow="xs" p="md" m="md">
                             <Editor
                                 height="200px"
-                                defaultLanguage={language}
+                                defaultLanguage="javascript"
                                 defaultValue={code || '// some comment'}
                                 theme={colorScheme === 'light' ? 'vs' : 'vs-dark'}
                                 onChange={(value): void => handleCodeChange(value)}

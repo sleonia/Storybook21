@@ -1,5 +1,6 @@
 import path from 'path'
 
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import type { Configuration } from 'webpack'
 
 import { DIST, ENTRY } from './constants'
@@ -51,7 +52,7 @@ const config: Configuration = {
     resolve: {
         extensions: ['.jsx', '.js', '.tsx', '.ts', '.css', '.json']
     },
-    plugins: []
+    plugins: [new ForkTsCheckerWebpackPlugin()]
 }
 
 export default config

@@ -7,14 +7,14 @@ import WebpackNotifierPlugin from 'webpack-notifier'
 import { DIST } from '../constants'
 
 import { createBaseConfig } from './utils/base'
-import type { CommanderStartOptions } from './types'
+import type { CommanderStartOptionsRequired } from './types'
 
 export const runBuild = async ({
     configPath,
     mode
-}: CommanderStartOptions): Promise<void> => {
+}: CommanderStartOptionsRequired): Promise<void> => {
     const baseConfig = await createBaseConfig(configPath, mode)
-    baseConfig.plugins.push(
+    baseConfig.plugins?.push(
         new WebpackNotifierPlugin({
             title: 'Ready 🦊',
             emoji: true
@@ -44,6 +44,6 @@ export const runBuild = async ({
             throw error
         }
 
-        console.log(`Output:\n${stats.toString({ chunks: false })}`)
+        console.log(`Output:\n${stats?.toString({ chunks: false }) || ''}`)
     })
 }

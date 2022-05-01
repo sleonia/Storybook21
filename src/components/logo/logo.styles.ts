@@ -1,10 +1,10 @@
 import { createStyles } from '@mantine/core'
 
-export const useLogoStyles = createStyles(() => ({
+export const useLogoStyles = createStyles((theme) => ({
     logo: {
         display: 'flex'
     },
     logoIcon: {
-        marginRight: 8
+        marginRight: theme.spacing.xs
     }
 }))

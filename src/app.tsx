@@ -13,14 +13,13 @@ import './i18next'
 
 import { THEMES } from './constants'
 import { HotKeys } from './hotkeys'
-import { DataProvider } from './data-provider'
+import { DataProvider } from './data-provider/provider'
 import { Header } from './header'
 import { Sidebar } from './sidebar'
 import { GlobalStyles, useAppStyles } from './app.style'
-import { Footer } from './main/footer'
+import { Footer } from './footer'
 import { Routing } from './routing'
 
-// TODO разделить роутинг и компоненту
 export const App = (): JSX.Element => {
     const { classes } = useAppStyles()
     const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({

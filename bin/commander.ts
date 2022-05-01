@@ -5,7 +5,7 @@ import { version, description } from '../package.json'
 import { runServer } from './server'
 import { runBuild } from './build'
 import { init } from './utils/init'
-import type { CommanderStartOptions } from './types'
+import type { CommanderStartOptionsRequired } from './types'
 import { WebpackMode } from './types'
 
 const DEFAULT_PORT = 4242
@@ -22,8 +22,8 @@ const parseOptions = ({
     mode,
     port
 }: Record<string, string | undefined>
-): NonNullable<CommanderStartOptions> => ({
-    configPath: config,
+): CommanderStartOptionsRequired => ({
+    configPath: config as string,
     mode: mode === WebpackMode.Development || mode === WebpackMode.Production
         ? mode
         : WebpackMode.Development,
