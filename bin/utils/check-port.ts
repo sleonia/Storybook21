@@ -1,3 +1,4 @@
+/* eslint-disable no-process-exit, unicorn/no-process-exit, promise/prefer-await-to-then, promise/always-return, promise/no-nesting, consistent-return */
 import http from 'http'
 
 import inquirer, { QuestionCollection } from 'inquirer'
@@ -26,7 +27,6 @@ export const checkPort = (port: number): Promise<number> => isPortFree(port)
         if (res) {
             return port
         }
-
         return inquirer.prompt([getQuestion(port)])
             .then(({ isAnotherPort }: Record<string, boolean>) => {
                 if (isAnotherPort) {
@@ -35,6 +35,8 @@ export const checkPort = (port: number): Promise<number> => isPortFree(port)
                 process.exit(1)
             })
             .catch((e: unknown) => {
+                /* comment: Show logs */
+                /* eslint-disable-next-line no-console */
                 console.log(e)
                 process.exit(1)
             })

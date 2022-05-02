@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react'
 import type { PropsWithChildren } from 'react'
 
-import type { DataContextType, NavigationFlat } from './types'
+import type { DataContextType } from './types'
 import { navigationToFlat } from './navigation-to-flat'
 
 export const DataContext = createContext<DataContextType | null>(null)
@@ -18,7 +18,7 @@ export const useDataProvider = (): DataContextType => {
 
 export const DataProvider = ({ children }: PropsWithChildren<unknown>): JSX.Element => {
     const navigation = WEBPACK_ALIAS_NAVIGATION
-    const navigationFlat = navigationToFlat(navigation) as Array<NavigationFlat>
+    const navigationFlat = navigationToFlat(navigation)
 
     return (
         <DataContext.Provider

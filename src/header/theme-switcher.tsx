@@ -6,6 +6,8 @@ import i18next from 'i18next'
 import { capitalize } from '../utils'
 
 export const ThemeSwitcher = (): JSX.Element => {
+    /* comment: eslint error */
+    /* eslint-disable-next-line @typescript-eslint/unbound-method */
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
     const isDark = colorScheme === 'dark'
 

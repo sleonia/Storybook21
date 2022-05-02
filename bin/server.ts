@@ -41,6 +41,8 @@ export const runServer = async ({
     const host = `http://${devServerOptions.allowedHosts as string}:${freePort}`
 
     new WebpackDevServer(devServerOptions, compiler).startCallback(() => {
+        /* comment: Show logs */
+        /* eslint-disable-next-line no-console */
         console.log(`💥 Server listening on ${host} 💥`)
     })
 }

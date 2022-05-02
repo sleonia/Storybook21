@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, Table, Text, Space, Code, Center } from '@mantine/core'
+import { Title, Table, Text, Space, Code } from '@mantine/core'
 import i18next from 'i18next'
 
 import { usePropTypesStyles } from './prop-types.style'
@@ -13,9 +13,10 @@ export const PropTypes = ({ displayName }: PropsTypesProps): JSX.Element => {
     }
 
     const componentInfo = WEBPACK_ALIAS_COMPONENTS_DOCUMENTATION[displayName]
-    console.log('🚀 ~ file: prop-types.tsx ~ line 13 ~ WEBPACK_ALIAS_COMPONENTS_DOCUMENTATION', componentInfo)
 
     if (!componentInfo) {
+        /* comment: Show logs */
+        /* eslint-disable-next-line no-console */
         console.warn(
             `%cNo info about ${displayName}`,
             'color: #aa00ff; font-style: italic; background-color: #c8ff00;padding: 2px'

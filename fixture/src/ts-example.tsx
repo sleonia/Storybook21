@@ -4,7 +4,7 @@ type ButtonColorScheme = 'base' | 'secondary' | 'link' | 'purple' | 'blue' | 'gr
 
 export type CoolTsButtonProps = {
     title: string
-    /** Пример отображения сложного типа */
+    /** Complex type description */
     obj?: {
         disabled?: boolean
         loading?: string
