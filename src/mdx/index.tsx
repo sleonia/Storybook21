@@ -6,9 +6,14 @@ import Playground from '@storybook21-aliases/playground'
 
 import type { MdxProps } from './types'
 import { CodeBlock } from './code-block'
+import { PropTypes } from './playground-components'
 
 export const Mdx = ({ content: MdxContext }: MdxProps): JSX.Element => {
-    const mdxCompnents = { code: CodeBlock as () => JSX.Element, ...Playground }
+    const mdxCompnents = {
+        code: CodeBlock as () => JSX.Element,
+        PropTypes,
+        ...Playground
+    }
     return (
         <MDXProvider components={mdxCompnents}>
             <MdxContext components={mdxCompnents} />

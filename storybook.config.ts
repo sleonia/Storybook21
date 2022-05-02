@@ -20,9 +20,16 @@ const navigation: Array<Navigation> = [
                 mdx: './index.mdx',
                 children: [
                     {
-                        link: '/button-test',
-                        title: 'Button Test',
-                        mdx: './index.mdx'
+                        link: '/ts-button-test',
+                        title: 'Tsx Button Test',
+                        mdx: './index.mdx',
+                        component: '../fixture/src/ts-example.tsx'
+                    },
+                    {
+                        link: '/js-button-test',
+                        title: 'Js Button Test',
+                        mdx: './index.mdx',
+                        component: '../fixture/src/js-example.jsx'
                     }
                 ]
             }

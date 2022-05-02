@@ -23,7 +23,7 @@ const createNavigation = (navigation?: Array<Navigation>): JSX.Element => (
     // comment: Mantine typings error
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    <Stack component="ul">
+    <Stack component="ul" spacing={0}>
         {navigation?.map((item) => !item.hidden && (
             <li key={item.link}>
                 {item.mdx ? (

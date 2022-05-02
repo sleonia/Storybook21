@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import {
     Global,
@@ -6,7 +6,11 @@ import {
     ColorSchemeProvider,
     Group
 } from '@mantine/core'
-import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import {
+    useHotkeys,
+    useLocalStorage,
+    useMediaQuery
+} from '@mantine/hooks'
 import type { ColorScheme } from '@mantine/core'
 
 import './i18next'
@@ -28,11 +32,19 @@ export const App = (): JSX.Element => {
         getInitialValueInEffect: true
     })
 
-    // const matches = useMediaQuery('(max-width: 769px)', false)
-    // TODO обработать мобилу
+    const isMobile = useMediaQuery('(max-width: 769px)', false)
     const [isSidebarOpened, setSidebarOpened] = useState(true)
-
+    
     const handleSidebarOpened = (): void => setSidebarOpened(!isSidebarOpened)
+
+    useEffect(() => {
+        if (isMobile) {
+            setSidebarOpened(false)
+        } else {
+            setSidebarOpened(true)
+        }
+    }, [isMobile])
+
 
     const toggleColorScheme = (value?: ColorScheme): void => {
         setColorScheme(value || (colorScheme === THEMES.dark ? THEMES.light : THEMES.dark))

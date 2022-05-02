@@ -4,7 +4,7 @@ export type Navigation = {
     link: string
     title: string
     mdx?: string
-    components?: string
+    component?: string
     showMenu?: boolean
     hidden?: boolean
     children?: Array<Navigation>

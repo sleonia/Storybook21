@@ -1,0 +1,8 @@
+{
+    "shouldExtractLiteralValuesFromEnum": true,
+    "shouldRemoveUndefinedFromOptional": true,
+    "shouldExtractValuesFromUnion": true,
+    "skipChildrenPropWithoutDoc": true,
+    "savePropValueAsString": true,
+    "shouldIncludePropTagMap": true
+}

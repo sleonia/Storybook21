@@ -27,6 +27,12 @@
 
     "code-block.toggle-code": "Toggle code",
     "code-block.copy-code": "Copy code",
-    "code-block.copy-code.compeleted": "Copied!"
+    "code-block.copy-code.compeleted": "Copied!",
 
+    "props-table.title": "{{displayName}} props",
+    "props-table.heading.name": "Name",
+    "props-table.heading.type": "Type",
+    "props-table.heading.default-value": "Default value",
+    "props-table.heading.description": "Description",
+    "props-table.required": "required"
 }

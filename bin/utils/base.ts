@@ -8,6 +8,8 @@ import type { Config } from '../../@types/index.d'
 import config from '../../webpack.config'
 import { ALIASES } from '../../constants'
 
+import { generateDocumentation } from './generate-documentation'
+
 const DEFAULT_CONFIG = {
     title: '🌈 Nice title 🌈',
     version: '1.0.0',
@@ -35,11 +37,14 @@ export const createBaseConfig = async (
         plugins: [
             ...config.plugins || [],
             new webpack.DefinePlugin({
-                'process.env.VERSION': JSON.stringify(configProject.version || DEFAULT_CONFIG.version),
-                'process.env.NAVIGATION': JSON.stringify(configProject.navigation),
-                'process.env.CWD': JSON.stringify(process.cwd()),
-                'process.env.CWD_STORYBOOK': JSON.stringify(
+                WEBPACK_ALIAS_VERSION: JSON.stringify(configProject.version || DEFAULT_CONFIG.version),
+                WEBPACK_ALIAS_NAVIGATION: JSON.stringify(configProject.navigation),
+                WEBPACK_ALIAS_CWD: JSON.stringify(process.cwd()),
+                WEBPACK_ALIAS_CWD_STORYBOOK: JSON.stringify(
                     path.resolve(process.cwd(), configProject.storybookContext || '/storybook')
+                ),
+                WEBPACK_ALIAS_COMPONENTS_DOCUMENTATION: JSON.stringify(
+                    generateDocumentation(configProject.componentsDir, configProject.navigation)
                 )
             }),
             new HtmlWebpackPlugin({
