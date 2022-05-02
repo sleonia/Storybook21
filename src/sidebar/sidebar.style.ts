@@ -9,11 +9,14 @@ import { THEMES, ScrollStyles, SIDEBAR_WIDTH } from '../constants'
 export const BOLD_LINK_FONT = 500
 
 export const MobileStyles: CSSObject = {
-    width: SIDEBAR_WIDTH
+    width: SIDEBAR_WIDTH,
+    position: 'relative'
 }
 
 export const useSidebarStyles = createStyles((theme, isSidebarOpened: boolean) => ({
     sidebar: {
+        position: 'absolute',
+        zIndex: 1,
         display: isSidebarOpened ? 'block' : 'none',
         width: '100%',
         height: ScrollStyles.height,
