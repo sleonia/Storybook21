@@ -1,6 +1,7 @@
 import path from 'path'
 
 import webpack from 'webpack'
+import merge from 'webpack-merge'
 import type { Configuration } from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 
@@ -22,14 +23,17 @@ export const createBaseConfig = async (
 ): Promise<Configuration> => {
     const { default: configProject } = await import(`${process.cwd()}/${configPath}`) as Record<'default', Config>
 
-    return {
+    return merge<Configuration>({
         ...config,
+        output: {
+            ...config.output,
+            path: __dirname + configProject.output
+        },
         mode,
         resolve: {
             ...config.resolve,
             alias: {
-                // TODO раскоментить для проверок вне src
-                // [ALIASES.library]: path.resolve(process.cwd(), configProject.entry || ''),
+                [ALIASES.library]: path.resolve(process.cwd(), configProject.entry || ''),
                 [ALIASES.playground]: path.resolve(process.cwd(), configProject.playground || ''),
                 cwd: path.resolve(process.cwd())
             }
@@ -41,7 +45,7 @@ export const createBaseConfig = async (
                 WEBPACK_ALIAS_NAVIGATION: JSON.stringify(configProject.navigation),
                 WEBPACK_ALIAS_CWD: JSON.stringify(process.cwd()),
                 WEBPACK_ALIAS_CWD_STORYBOOK: JSON.stringify(
-                    path.resolve(process.cwd(), configProject.storybookContext || '/storybook')
+                    path.resolve(process.cwd(), configProject.storybookContext || DEFAULT_CONFIG.storybookContext)
                 ),
                 WEBPACK_ALIAS_COMPONENTS_DOCUMENTATION: JSON.stringify(
                     generateDocumentation(configProject.componentsDir, configProject.navigation)
@@ -62,5 +66,6 @@ export const createBaseConfig = async (
               `
             })
         ]
-    }
+    }, configProject.webpackConfig || {}
+    )
 }

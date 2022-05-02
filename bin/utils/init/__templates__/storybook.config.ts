@@ -12,7 +12,6 @@ const navigation: Array<Navigation> = [
         link: '/components',
         title: 'Компоненты',
         mdx: './components.mdx',
-        showMenu: true,
         children: []
     },
     {
@@ -47,9 +46,6 @@ const config: Config = {
      * ℹ️ Use only default export
     */
     playground: './playground/index.tsx',
-
-    /** Array of polyfills which include for playground pages */
-    polyfills: [],
 
     /** */ // TODO
     theme: '',

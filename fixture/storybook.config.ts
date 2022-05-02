@@ -5,30 +5,40 @@ const navigation: Array<Navigation> = [
         link: '/',
         title: 'Main page',
         mdx: './index.mdx',
-        hidden: true
+        hidden: true,
+        children: []
     },
     {
         link: '/components',
         title: 'Компоненты',
         mdx: './components.mdx',
-        showMenu: true,
         children: [
             {
-                link: 'demo-button',
-                title: 'Demo button'
+                link: '/',
+                title: 'Ts button',
+                component: './ts-example.tsx'
+            },
+            {
+                link: '/',
+                title: 'Js button',
+                component: './js-example.jsx'
             }
         ]
     },
     {
         link: '/preview',
         title: 'Preview',
-        mdx: './preview.mdx'
-    },
+        mdx: './preview.mdx',
+        children: []
+    }
 ]
 
 const config: Config = {
     /** document.title */
     title: '🌈 Your nice title 🌈',
+
+    /** Your app version */
+    version: '1.0.0',
 
     /** You may to include css file or link to css resource */
     globalStyle: '',
@@ -40,18 +50,15 @@ const config: Config = {
     themeProvider: '',
 
     /** Entry point in your app. Use in webpack */
-    entry: '',
+    entry: './src/index.ts',
 
-    /** Demo file for provide to demo custom utils.
-     * 
+    /** Playground file with exports for provide to playground custom component, utils, etc.
+     *
      * ℹ️ Use only default export
     */
     playground: './playground/index.tsx',
 
-    /** Array of polyfills which include for demo page */
-    polyfills: [],
-
-    /** */ //TODO
+    /** */ // TODO
     theme: '',
 
     /** */
@@ -60,7 +67,7 @@ const config: Config = {
     /** Context for provide mdx navigation */
     storybookContext: './storybook',
 
-    /** Array of navigation config for demo pages */
+    /** Array of navigation config for playground pages */
     navigation,
 
     /** Custom webpack config which merge with webpack.config in storybook */

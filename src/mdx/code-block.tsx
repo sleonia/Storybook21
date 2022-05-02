@@ -1,10 +1,21 @@
 import React, { useState } from 'react'
 import i18next from 'i18next'
-import { Button, Collapse, Group, Paper, useMantineTheme, Code } from '@mantine/core'
+import {
+    Button,
+    Collapse,
+    Group,
+    Paper,
+    useMantineTheme,
+    Code
+} from '@mantine/core'
 import { useClipboard } from '@mantine/hooks'
 import Editor from '@monaco-editor/react'
 import { Code as CodeIcon, Copy as CopyIcon } from 'tabler-icons-react'
+import { useMDXComponents } from '@mdx-js/react'
 import { LiveProvider, LiveContext, LivePreview } from 'react-live'
+/* comment: alias for playground components */
+/* eslint-disable-next-line import/no-unresolved */
+import * as Library from '@storybook21-aliases/library'
 /* comment: alias for playground components */
 /* eslint-disable-next-line import/no-unresolved */
 import Playground from '@storybook21-aliases/playground'
@@ -76,7 +87,13 @@ export const CodeBlock = ({ children }: CodeBlockProps): JSX.Element => {
     const [code, setCode] = useState(children)
 
     return (
-        <LiveProvider code={code} scope={{ Playground }} noInline>
+        // FIXME useMDXComponents возможно не работает
+        <LiveProvider
+            code={code}
+            scope={{ Playground, ...Library }}
+            // scope={{ ...useMDXComponents(), Playground, ...Library }}
+            noInline
+        >
             <LivePreview />
             <LiveEditor handleCodeChange={(value): void => setCode(value)} />
         </LiveProvider>

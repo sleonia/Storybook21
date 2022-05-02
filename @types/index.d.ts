@@ -5,7 +5,6 @@ export type Navigation = {
     title: string
     mdx?: string
     component?: string
-    showMenu?: boolean
     hidden?: boolean
     children?: Array<Navigation>
 }
@@ -18,7 +17,6 @@ export type Config = {
     themeProvider?: string
     entry?: string
     playground?: string
-    polyfills?: Array<string>
     theme?: string
     output?: string
     storybookContext?: string

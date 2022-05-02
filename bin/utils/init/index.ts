@@ -74,7 +74,7 @@ const addScriptsToPackageJson = (): void => {
     const path = resolve(process.cwd(), 'package.json')
     const json = JSON.parse(readFileSync(path, 'utf-8')) as Record<'scripts', Record<string, string | undefined> | undefined>
 
-    const getTemplate = (mode: 'start' | 'build'): string => `npx storybook21 ${mode} --config="./storybook.config.ts"`
+    const getTemplate = (mode: 'start' | 'build'): string => `npx storybook21 ${mode} --config=storybook.config.ts`
 
     if (json.scripts?.['start:storybook'] || json.scripts?.['build:storybook']) {
         /* comment: Show logs */

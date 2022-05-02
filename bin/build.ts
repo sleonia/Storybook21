@@ -27,9 +27,7 @@ export const runBuild = async ({
     })(
         baseConfig, {
             output: {
-                path: resolve(process.cwd(), DIST)
-            // TODO  билбидм туда, куда захотел пользователь
-            // path: resolve(process.cwd(), configProject.output || DIST)
+                path: resolve(process.cwd(), baseConfig.output?.path || DIST)
             },
 
             devtool: void 0,
