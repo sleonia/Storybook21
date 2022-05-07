@@ -18,6 +18,7 @@ CoolJsButton.propTypes = {
     mode: PropTypes.oneOf(['info', void 0]),
     onClick: PropTypes.func,
     color: PropTypes.string,
+    /** Cool description */
     colorScheme: PropTypes.oneOf([
         'base',
         'secondary',

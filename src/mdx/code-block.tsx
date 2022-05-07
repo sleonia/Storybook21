@@ -11,7 +11,7 @@ import {
     Code,
     Highlight
 } from '@mantine/core'
-import { useClipboard } from '@mantine/hooks'
+import { useClipboard, useMediaQuery } from '@mantine/hooks'
 import Editor from '@monaco-editor/react'
 import CodeIcon from 'tabler-icons-react/dist/icons/code'
 import CopyIcon from 'tabler-icons-react/dist/icons/copy'
@@ -27,6 +27,7 @@ import { useCodeBlockStyles } from './code-block.style'
 import type { CodeBlockProps, LiveEditorProps } from './types'
 
 const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
+    const isMobile = useMediaQuery('(max-width: 769px)', false)
     const [opened, setOpen] = useState(false)
     const clipboard = useClipboard({ timeout: 1000 })
 
@@ -56,7 +57,7 @@ const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
                         </Button>
                     </Group>
                     <Collapse in={opened}>
-                        <Paper shadow="xs" p="md" m="md">
+                        <Paper shadow="xs" className={classes.editorWrapper}>
                             <Editor
                                 height="200px"
                                 defaultLanguage="javascript"
@@ -66,7 +67,8 @@ const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
                                 options={{
                                     minimap: {
                                         enabled: false
-                                    }
+                                    },
+                                    lineNumbers: isMobile ? 'off' : 'on'
                                 }}
                             />
                         </Paper>

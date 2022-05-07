@@ -54,6 +54,11 @@ const navigation: Array<Navigation> = [
         ]
     },
     {
+        link: '/plans',
+        title: 'Plans',
+        mdx: './plans.mdx',
+    },
+    {
         link: '/mystery-page',
         title: 'Mystery',
         hidden: true
