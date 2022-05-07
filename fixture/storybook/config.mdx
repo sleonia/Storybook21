@@ -41,4 +41,45 @@ const config: Config = {
 <br />
 
 #### storybook.config.ts
-Javascript object with title, 
+Javascript object with settings. If you are using typescript you might to use types from `storybook21`
+```ts
+import type { Navigation, Config } from 'storybook21'
+
+const navigation: Array<Navigation> = [ /* some navigation objects */ ]
+const config: Config = {
+    /* some options */
+    navigation
+}
+
+// ⚠️ only default export
+export default config
+```
+
+##### Config
+- title - document.title for your app
+```tsx
+title: '🌈 Your nice title 🌈'
+```
+- version - your app version
+```tsx
+version: '1.0.0'
+```
+- globalStyle - you may to include css file or link to css resource
+```tsx
+// local file
+globalStyle: '/path/to/your/css/file.css'
+// or remote url
+globalStyle: 'https://best-css-templates/puppy-template.css'
+```
+- componentsDir - directory where storybook will find you components
+```tsx
+componentsDir: './path/to/your/source/folder'
+```
+- entry - entry point in your app. Use for provide your components or something to playground
+```tsx
+entry: './path/to/your/main/file'
+```
+- playground - see _Playground directory_ section
+```tsx
+playground: './path/to/your/playground/main/file'
+```
