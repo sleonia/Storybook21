@@ -1,11 +1,6 @@
 import React from 'react'
 import type { PropsWithChildren } from 'react'
-import {
-    ColorSchemeProvider,
-    MantineProvider,
-    useMantineColorScheme,
-    useMantineTheme
-} from '@mantine/core'
+import { ColorSchemeProvider, MantineProvider} from '@mantine/core'
 /* comment: alias for playground components */
 /* eslint-disable-next-line import/no-unresolved */
 import libraryTheme from '@storybook21-aliases/libraryTheme'
@@ -13,23 +8,7 @@ import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import { HotKeys } from '../hotkeys'
 import { THEMES } from '../constants'
 import type { ColorScheme } from '@mantine/core'
-
-const Helper = ({ children }: PropsWithChildren<unknown>) => {
-    const { colorScheme, toggleColorScheme } = useMantineColorScheme()
-    return (
-        <AppContext.Provider
-            value={{
-                toggleColorScheme,
-                useColorScheme: useMantineTheme,
-                colorScheme
-            }}
-        >
-            {children}
-        </AppContext.Provider>
-    )
-}
-
-export const AppContext = React.createContext(() => {})
+import { DocsProvider } from './docs-provider'
 
 export const ThemeWrapper = ({ children }: PropsWithChildren<unknown>) => {
 
@@ -45,7 +24,7 @@ export const ThemeWrapper = ({ children }: PropsWithChildren<unknown>) => {
 
     useHotkeys([[HotKeys.themeSwitcher, (): void => toggleColorScheme()]])
 
-    const colors = libraryTheme ? libraryTheme[colorScheme] : {}
+    const colors = libraryTheme ? libraryTheme[colorScheme] : void 0
 
     return (
         <ColorSchemeProvider
@@ -55,13 +34,16 @@ export const ThemeWrapper = ({ children }: PropsWithChildren<unknown>) => {
             <MantineProvider
                 theme={{
                     colorScheme,
+                    // comment: Provide custom tokens
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
                     colors
                 }}
                 withGlobalStyles
             >
-                <Helper>
+                <DocsProvider>
                     {children}
-                </Helper>
+                </DocsProvider>
             </MantineProvider>
         </ColorSchemeProvider>
     )

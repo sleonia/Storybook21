@@ -13,7 +13,14 @@ const navigation: Array<Navigation> = [
     {
         link: '/docs',
         title: 'Docs',
-        mdx: './docs.mdx'
+        mdx: './docs.mdx',
+        children: [
+            {
+                link: '/config',
+                title: 'Config',
+                mdx: './config.mdx'
+            }
+        ]
     },
     {
         link: '/quick-start',

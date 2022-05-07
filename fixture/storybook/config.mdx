@@ -1,0 +1,44 @@
+# Config
+#### Playground directory
+This directory needs for provide to live editor some components, utils, ...etc.
+```tsx
+// playground/index.tsx
+export default {
+    CoolWrapper: ({ children }) => <div>{children}</div>,
+    randomGenerator: (min, max) => Math.floor(Math.random() * (max - min + 1) ) + min
+}
+
+// in your mdx docs
+<Playground.CoolWrapper>
+    <button onClick={() => alert(randomGenerator(0, 10))}>
+        {'Do you want to get a random number 🎲?'}
+    </button>
+</Playground.CoolWrapper>
+```
+
+<br />
+
+#### Storybook directory
+This directory contains your *.mdx docs files. The files you added in your `navigation` section in storybook.config.ts
+```mdx
+# Here your cool mdx file with awesome docs 🦄🦄🦄
+```
+
+Example of adding mdx to your config
+```tsx
+const navigation: Array<Navigation> = [{
+    link: '/',
+    title: 'Main',
+    mdx: './index.mdx' // Path to mdx file in storybookContext
+}]
+
+const config: Config = {
+    storybookContext: './storybook', // mdx files directory 
+    navigation
+}
+```
+
+<br />
+
+#### storybook.config.ts
+Javascript object with title, 

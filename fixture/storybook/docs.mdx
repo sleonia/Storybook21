@@ -1,24 +1,29 @@
 # Docs
 
-#### What 
+#### Introduction
+Storybook21 is a tool for UI development. It makes development faster and easier by isolating components. This allows you to work on one component at a time. You can develop entire UIs without needing to start up a complex dev stack, force certain data into your database, or navigate around your application.
 
 #### Which commands we provide 🤖?
-- <code>start</code> - for run app with [webpack-dev-server](https://webpack.js.org/configuration/dev-server/) on default port (4242) or your port
-- <code>build</code> - build app to static files for nginx server, for example
-- <code>init</code> - create default config file and content folders for quick start without boilerplate code
+- `start` - for run app with [webpack-dev-server](https://webpack.js.org/configuration/dev-server/) on default port (4242) or your custom port
+- `build` - build app to static files for nginx server, for example
+- `init` - create default config file and content folders for quick start without boilerplate code
 <br />
-For show all options and commands use: <code>npx storybook21 --help</code>
+For show all options and commands use:
+```bash
+npx storybook21 --help
+```
 
 <br />
 
 #### How show prop types?
-We provide <code>PropTypes</code> component.
-For show props you need to specify path to component in <code>component</code> field in object in navigation.
-Use props _displayName_ for show props-table. If _displayName_ is incorrect you'll get console.error.
+We provide `PropTypes` component.
+For show props you need to specify path to component in `component` field in object in navigation.
+Use props _displayName_ for show props-table. If _displayName_ is incorrect you'll get error in console.
 
 ```tsx
 <PropTypes displayName="YOUR_COOL_COMPONENT_NAME" />
 ```
+
 Under the hood we use [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript) for typescript files and [react-docgen](https://github.com/reactjs/react-docgen) for javascript files.
 
 Show examples [ts props](/components/ts-props-example) or [js props](/components/js-props-example)
@@ -26,10 +31,17 @@ Show examples [ts props](/components/ts-props-example) or [js props](/components
 
 <br />
 
+#### What is `storybook.config.ts`?
+This is config for storybook21. See [this page](/docs/config) for get more info
+
 #### How it works 🛠️?
 
 <br />
 
 #### What's under the hood 🚗?
-This app use [@mantine](https://mantine.dev/), [react-live](https://github.com/FormidableLabs/react-live) and [@monaco-editor](https://github.com/suren-atoyan/monaco-react) and has full typescript support.
-
+- [@mantine](https://mantine.dev/)
+- [react-live](https://github.com/FormidableLabs/react-live)
+- [@monaco-editor](https://github.com/suren-atoyan/monaco-react) 
+- [esbuild-loader](https://github.com/privatenumber/esbuild-loader#readme)
+- [@mdx-js](https://mdxjs.com)
+- [webpack-dev-server](https://github.com/webpack/webpack-dev-server#readme)

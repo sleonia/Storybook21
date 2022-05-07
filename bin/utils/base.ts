@@ -59,7 +59,7 @@ export const createBaseConfig = async (
                 // FIXME
                 [ALIASES.libraryTheme]: configProject.theme
                     ? path.resolve(process.cwd(), configProject.theme)
-                    : JSON.stringify({})
+                    : ''
             }
         },
         plugins: [

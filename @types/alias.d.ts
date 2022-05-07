@@ -9,6 +9,6 @@ declare module '@storybook21-aliases/playground' {
 }
 
 declare module '@storybook21-aliases/libraryTheme' {
-    const tmp: Record<'dark' | 'light', unknown> | undefined | null = {}
+    const tmp: Record<'dark' | 'light', Record<string, string>> | undefined | null = {}
     export default tmp
 }

@@ -8,7 +8,8 @@ import {
     Group,
     Paper,
     useMantineTheme,
-    Code
+    Code,
+    Highlight
 } from '@mantine/core'
 import { useClipboard } from '@mantine/hooks'
 import Editor from '@monaco-editor/react'
@@ -58,7 +59,7 @@ const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
                         <Paper shadow="xs" p="md" m="md">
                             <Editor
                                 height="200px"
-                                // defaultLanguage="javascript"
+                                defaultLanguage="javascript"
                                 defaultValue={code || '// some comment'}
                                 theme={colorScheme === 'light' ? 'vs' : 'vs-dark'}
                                 onChange={(value): void => handleCodeChange(value)}
@@ -88,11 +89,10 @@ const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
 export const CodeBlock = ({ children, className }: CodeBlockProps): JSX.Element => {
     const [code, setCode] = useState(children)
 
-    const language = (className?.replace(/language-/, '') || 'bash') as PrismSharedProps['language']
+    const language = (className?.replace(/language-/, '')) as PrismSharedProps['language'] | ''
 
-    if (code.indexOf('render') !== -1) {
+    if (code?.indexOf('render') !== -1) {
         return (
-            // FIXME useMDXComponents возможно не работает
             <LiveProvider
                 code={code}
                 scope={{ Playground, ...Library }}
@@ -104,5 +104,9 @@ export const CodeBlock = ({ children, className }: CodeBlockProps): JSX.Element 
         )
     }
 
-    return <Prism language={language}>{code}</Prism>
+    if (language) {
+        return <Prism language={language}>{code}</Prism>
+    }
+
+    return <Highlight highlight={code} component="span">{code}</Highlight>
 }

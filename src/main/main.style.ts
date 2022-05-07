@@ -5,6 +5,9 @@ export const useMainStyles = createStyles(() => ({
         flexGrow: 1
     },
     paper: {
-        padding: '16px 40px'
+        padding: '16px 40px',
+        '& > ul': {
+            marginLeft: '20px'
+        }
     }
 }))

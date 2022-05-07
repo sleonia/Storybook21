@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppContext } from 'storybook21/src/theme-provider'
+import { DocsContext } from 'storybook21/src/theme-provider/docs-provider'
 
 type ButtonColorScheme = 'base' | 'secondary' | 'link' | 'purple' | 'blue' | 'green' | 'skyblue' | 'black' | 'gold' | 'aqua'
 
@@ -24,16 +24,13 @@ export const CoolTsButton = ({
     mode,
     onClick = () => {},
     color = 'black',
-}: CoolTsButtonProps) => {
-    return (
-        <AppContext.Consumer>
-            {(props) => {
-                console.log('🚀 ~ file: ts-example.tsx ~ line 35 ~ props', props)
-                return (
-                    <button onClick={() => props.toggleColorScheme()}>Cool ts button</button>
-                )
-            }}
-        </AppContext.Consumer>
+}: CoolTsButtonProps) => (
+    <DocsContext.Consumer>
+        {({ toggleColorScheme, colorScheme }) => (
+            <button onClick={() => toggleColorScheme()}>
+                Cool ts button with {colorScheme} theme
+            </button>
+        )}
+    </DocsContext.Consumer>
 
-    )
-}
+)
