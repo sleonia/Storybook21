@@ -7,7 +7,7 @@ import {
     Title,
     ThemeIcon
 } from '@mantine/core'
-import { Rocket } from 'tabler-icons-react'
+import Rocket from 'tabler-icons-react/dist/icons/rocket'
 
 import { useLogoStyles } from './logo.styles'
 

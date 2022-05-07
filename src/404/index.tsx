@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeIcon, Center, Stack, Text, Accordion, Paper, MediaQuery } from '@mantine/core'
-import { Error404 } from 'tabler-icons-react'
+import Error404 from 'tabler-icons-react/dist/icons/error-404'
 import i18next from 'i18next'
 
 import { ExternalLink } from '../components'

@@ -35,9 +35,6 @@ const config: Config = {
     /** Directory where storybook will find you components */
     componentsDir: './src',
 
-    /** Theme provider */
-    themeProvider: '',
-
     /** Entry point in your app. Use in webpack */
     entry: '',
 
@@ -47,8 +44,14 @@ const config: Config = {
     */
     playground: './playground/index.tsx',
 
-    /** */ // TODO
+    /** You can provide custom theme-tokens for your project
+     * 
+     * ℹ️ Use only default export
+    */
     theme: '',
+
+    /** Plugins for webpack */
+    plugins: [],
 
     /** */
     output: 'target/temp',

@@ -1,2 +1,2 @@
-export { CoolJsButton } from './js-example'
-export { CoolTsButton } from './ts-example'
+export { CoolJsButton } from './js-props-example'
+export { CoolTsButton } from './ts-props-example'

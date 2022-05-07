@@ -14,10 +14,10 @@ export type Config = {
     version?: string
     globalStyle?: string
     componentsDir: string
-    themeProvider?: string
     entry?: string
     playground?: string
     theme?: string
+    plugins?: Configuration['plugins']
     output?: string
     storybookContext?: string
     navigation: Array<Navigation>

@@ -1,10 +1,7 @@
-import { resolve } from 'path'
-
 import webpack from 'webpack'
-import { mergeWithCustomize, customizeObject } from 'webpack-merge'
+import { merge } from 'webpack-merge'
 import WebpackNotifierPlugin from 'webpack-notifier'
-
-import { DIST } from '../constants'
+import { ESBuildMinifyPlugin } from 'esbuild-loader'
 
 import { createBaseConfig } from './utils/base'
 import type { CommanderStartOptionsRequired } from './types'
@@ -14,6 +11,8 @@ export const runBuild = async ({
     mode
 }: CommanderStartOptionsRequired): Promise<void> => {
     const baseConfig = await createBaseConfig(configPath, mode)
+    process.env.NODE_ENV = 'production'
+
     baseConfig.plugins?.push(
         new WebpackNotifierPlugin({
             title: 'Ready 🦊',
@@ -21,27 +20,39 @@ export const runBuild = async ({
         })
     )
 
-    process.env.NODE_ENV = 'production'
-    const config = mergeWithCustomize({
-        customizeObject: customizeObject({ 'output.path': 'replace' })
-    })(
-        baseConfig, {
-            output: {
-                path: resolve(process.cwd(), baseConfig.output?.path || DIST)
-            },
-
-            devtool: void 0,
+    const config = merge(
+        baseConfig,
+        {
+            cache: false,
+            devtool: 'hidden-source-map',
 
             stats: {
                 chunks: false
+            },
+            optimization: {
+                usedExports: true,
+                moduleIds: 'named',
+                minimizer: [
+                    new ESBuildMinifyPlugin({
+                        target: 'es2015',
+                        minify: true,
+                        minifyWhitespace: true,
+                        minifyIdentifiers: true,
+                        minifySyntax: true,
+                        sourcemap: false
+                    })
+                ]
             }
-        })
+        }
+    )
 
     webpack(config, (error, stats) => {
         if (error) {
             throw error
         }
 
+        /* comment: Show logs */
+        /* eslint-disable-next-line no-console */
         console.log(`Output:\n${stats?.toString({ chunks: false }) || ''}`)
     })
 }

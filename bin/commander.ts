@@ -11,7 +11,6 @@ import { WebpackMode } from './types'
 const DEFAULT_PORT = 4242
 
 const program = new Command()
-
 const configOption = createOption('-c, --config <string>', 'Path to config file')
 const modeOption = createOption('-m, --mode <string>', 'Mode for run app')
 const portOption = createOption('-p, --port <type>', 'Port for dev server')
@@ -31,7 +30,7 @@ const parseOptions = ({
 })
 
 program
-    .name('🌈 Storybook 21 🌈')
+    .name('🦄 Storybook 21 🦄')
     .description(description)
     .version(version)
 

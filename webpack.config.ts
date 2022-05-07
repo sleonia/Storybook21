@@ -8,7 +8,6 @@ import { DIST, ENTRY } from './constants'
 const config: Configuration = {
     entry: [path.join(__dirname, ENTRY)],
     output: {
-        publicPath: '/',
         path: `${__dirname}/${DIST}`
     },
     module: {

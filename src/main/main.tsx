@@ -9,7 +9,7 @@ export const Main = ({ children }: PropsWithChildren<unknown>): JSX.Element => {
 
     return (
         <main className={classes.main}>
-            <Paper shadow="xs" p="md" m="md">
+            <Paper className={classes.paper} shadow="xs" m="md">
                 {children}
             </Paper>
         </main>

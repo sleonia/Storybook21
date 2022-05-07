@@ -4,7 +4,7 @@ import type { NavigationFlat } from './types'
 
 type RequireCwd = Record<'context', (path?: string) => (path?: string) => Record<'default', (props: unknown) => JSX.Element>>
 
-const requireCwd = (require as unknown as RequireCwd).context(WEBPACK_ALIAS_CWD_STORYBOOK)
+const requireCwd = (require as unknown as RequireCwd).context(WEBPACK_DEFINE_CWD_STORYBOOK)
 
 export const navigationToFlat = (
     navigation: Array<Navigation> = [],

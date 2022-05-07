@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import i18next from 'i18next'
+import { Prism } from '@mantine/prism';
+import type { PrismSharedProps } from '@mantine/prism/lib/types';
 import {
     Button,
     Collapse,
@@ -10,8 +12,8 @@ import {
 } from '@mantine/core'
 import { useClipboard } from '@mantine/hooks'
 import Editor from '@monaco-editor/react'
-import { Code as CodeIcon, Copy as CopyIcon } from 'tabler-icons-react'
-import { useMDXComponents } from '@mdx-js/react'
+import CodeIcon from 'tabler-icons-react/dist/icons/code'
+import CopyIcon from 'tabler-icons-react/dist/icons/copy'
 import { LiveProvider, LiveContext, LivePreview } from 'react-live'
 /* comment: alias for playground components */
 /* eslint-disable-next-line import/no-unresolved */
@@ -56,7 +58,7 @@ const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
                         <Paper shadow="xs" p="md" m="md">
                             <Editor
                                 height="200px"
-                                defaultLanguage="javascript"
+                                // defaultLanguage="javascript"
                                 defaultValue={code || '// some comment'}
                                 theme={colorScheme === 'light' ? 'vs' : 'vs-dark'}
                                 onChange={(value): void => handleCodeChange(value)}
@@ -83,19 +85,24 @@ const LiveEditor = ({ handleCodeChange }: LiveEditorProps): JSX.Element => {
     )
 }
 
-export const CodeBlock = ({ children }: CodeBlockProps): JSX.Element => {
+export const CodeBlock = ({ children, className }: CodeBlockProps): JSX.Element => {
     const [code, setCode] = useState(children)
 
-    return (
-        // FIXME useMDXComponents возможно не работает
-        <LiveProvider
-            code={code}
-            scope={{ Playground, ...Library }}
-            // scope={{ ...useMDXComponents(), Playground, ...Library }}
-            noInline
-        >
-            <LivePreview />
-            <LiveEditor handleCodeChange={(value): void => setCode(value)} />
-        </LiveProvider>
-    )
+    const language = (className?.replace(/language-/, '') || 'bash') as PrismSharedProps['language']
+
+    if (code.indexOf('render') !== -1) {
+        return (
+            // FIXME useMDXComponents возможно не работает
+            <LiveProvider
+                code={code}
+                scope={{ Playground, ...Library }}
+                noInline
+            >
+                <LivePreview />
+                <LiveEditor handleCodeChange={(value): void => setCode(value)} />
+            </LiveProvider>
+        )
+    }
+
+    return <Prism language={language}>{code}</Prism>
 }

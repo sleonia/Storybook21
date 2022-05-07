@@ -5,7 +5,7 @@ export const useCodeBlockStyles = createStyles((theme) => ({
         marginTop: theme.spacing.md
     },
     codeWrapper: {
-        padding: theme.spacing.md
+        padding: `${theme.spacing.md}px 40px`
     },
     code: {
         fontSize: theme.fontSizes.md

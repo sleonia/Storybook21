@@ -12,7 +12,7 @@ export const PropTypes = ({ displayName }: PropsTypesProps): JSX.Element => {
         return <></>
     }
 
-    const componentInfo = WEBPACK_ALIAS_COMPONENTS_DOCUMENTATION[displayName]
+    const componentInfo = WEBPACK_DEFINE_COMPONENTS_DOCUMENTATION[displayName]
 
     if (!componentInfo) {
         /* comment: Show logs */

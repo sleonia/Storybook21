@@ -2,7 +2,7 @@ import React, { useRef, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useHotkeys } from '@mantine/hooks'
 import { Autocomplete, Kbd, MediaQuery } from '@mantine/core'
-import { Search as SearchIcon } from 'tabler-icons-react'
+import SearchIcon from 'tabler-icons-react/dist/icons/search'
 import i18next from 'i18next'
 
 import { HotKeys } from '../../hotkeys'

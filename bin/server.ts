@@ -20,6 +20,9 @@ export const runServer = async ({
 ): Promise<void> => {
     const freePort = await checkPort(port)
     const baseConfig = await createBaseConfig(configPath, mode)
+
+    baseConfig.output!.publicPath = '/'
+
     const compiler = webpack(baseConfig)
 
     const devServerOptions: Configuration = {

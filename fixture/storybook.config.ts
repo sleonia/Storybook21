@@ -1,12 +1,24 @@
 import type { Navigation, Config } from 'storybook21'
 
+import WebpackNotifierPlugin from 'webpack-notifier'
+import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
+const smp = new SpeedMeasurePlugin();
+
 const navigation: Array<Navigation> = [
     {
         link: '/',
-        title: 'Main page',
-        mdx: './index.mdx',
-        hidden: true,
-        children: []
+        title: 'Main',
+        mdx: './index.mdx'
+    },
+    {
+        link: '/docs',
+        title: 'Docs',
+        mdx: './docs.mdx'
+    },
+    {
+        link: '/quick-start',
+        title: 'Quick Start',
+        mdx: './quick-start.mdx'
     },
     {
         link: '/components',
@@ -14,22 +26,21 @@ const navigation: Array<Navigation> = [
         mdx: './components.mdx',
         children: [
             {
-                link: '/',
-                title: 'Ts button',
-                component: './ts-example.tsx'
+                link: '/ts-props-example',
+                title: 'Cool button with beautiful interface',
+                component: './ts-props-example.tsx'
             },
             {
-                link: '/',
-                title: 'Js button',
+                link: '/js-props-example',
+                title: 'Cool button with beautiful prop-types',
                 component: './js-example.jsx'
             }
         ]
     },
     {
-        link: '/preview',
-        title: 'Preview',
-        mdx: './preview.mdx',
-        children: []
+        link: '/mystery-page',
+        title: 'Mystery',
+        hidden: true
     }
 ]
 
@@ -41,13 +52,10 @@ const config: Config = {
     version: '1.0.0',
 
     /** You may to include css file or link to css resource */
-    globalStyle: '',
+    globalStyle: './src/global.styles.css',
 
     /** Directory where storybook will find you components */
     componentsDir: './src',
-
-    /** Theme provider */
-    themeProvider: '',
 
     /** Entry point in your app. Use in webpack */
     entry: './src/index.ts',
@@ -58,8 +66,19 @@ const config: Config = {
     */
     playground: './playground/index.tsx',
 
-    /** */ // TODO
-    theme: '',
+    /** You can provide custom theme-tokens for your project
+     * 
+     * ℹ️ Use only default export
+    */
+    theme: './theme.ts',
+
+    /** Plugins for webpack */
+    plugins: [
+        new WebpackNotifierPlugin({
+            title: 'Wooow 🦄',
+            emoji: true
+        })
+    ],
 
     /** */
     output: 'target/temp',
@@ -71,7 +90,7 @@ const config: Config = {
     navigation,
 
     /** Custom webpack config which merge with webpack.config in storybook */
-    webpackConfig: {}
+    webpackConfig: smp.wrap({})
 }
 
 export default config

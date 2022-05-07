@@ -10,5 +10,6 @@ export type LiveEditorProps = {
 
 export type CodeBlockProps = {
     className?: string
-    children?: string
+    children: string
+    // children?: string
 }

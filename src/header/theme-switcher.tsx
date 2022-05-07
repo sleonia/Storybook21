@@ -1,6 +1,7 @@
 import React from 'react'
 import { ActionIcon, useMantineColorScheme } from '@mantine/core'
-import { Sun, MoonStars } from 'tabler-icons-react'
+import MoonStars from 'tabler-icons-react/dist/icons/moon-stars'
+import Sun from 'tabler-icons-react/dist/icons/sun'
 import i18next from 'i18next'
 
 import { capitalize } from '../utils'

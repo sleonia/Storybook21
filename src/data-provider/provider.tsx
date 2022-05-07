@@ -17,7 +17,7 @@ export const useDataProvider = (): DataContextType => {
 }
 
 export const DataProvider = ({ children }: PropsWithChildren<unknown>): JSX.Element => {
-    const navigation = WEBPACK_ALIAS_NAVIGATION
+    const navigation = WEBPACK_DEFINE_NAVIGATION
     const navigationFlat = navigationToFlat(navigation)
 
     return (

@@ -1,0 +1,35 @@
+# Docs
+
+#### What 
+
+#### Which commands we provide 🤖?
+- <code>start</code> - for run app with [webpack-dev-server](https://webpack.js.org/configuration/dev-server/) on default port (4242) or your port
+- <code>build</code> - build app to static files for nginx server, for example
+- <code>init</code> - create default config file and content folders for quick start without boilerplate code
+<br />
+For show all options and commands use: <code>npx storybook21 --help</code>
+
+<br />
+
+#### How show prop types?
+We provide <code>PropTypes</code> component.
+For show props you need to specify path to component in <code>component</code> field in object in navigation.
+Use props _displayName_ for show props-table. If _displayName_ is incorrect you'll get console.error.
+
+```tsx
+<PropTypes displayName="YOUR_COOL_COMPONENT_NAME" />
+```
+Under the hood we use [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript) for typescript files and [react-docgen](https://github.com/reactjs/react-docgen) for javascript files.
+
+Show examples [ts props](/components/ts-props-example) or [js props](/components/js-props-example)
+
+
+<br />
+
+#### How it works 🛠️?
+
+<br />
+
+#### What's under the hood 🚗?
+This app use [@mantine](https://mantine.dev/), [react-live](https://github.com/FormidableLabs/react-live) and [@monaco-editor](https://github.com/suren-atoyan/monaco-react) and has full typescript support.
+

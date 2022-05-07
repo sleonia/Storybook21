@@ -21,7 +21,7 @@ export const LogoBlock = (): JSX.Element => (
                 </Group>
             </MediaQuery>
             <MediaQuery smallerThan="sm" styles={KbdMediaStyles}>
-                <Kbd>{WEBPACK_ALIAS_VERSION}</Kbd>
+                <Kbd>{WEBPACK_DEFINE_VERSION}</Kbd>
             </MediaQuery>
         </Group>
     </MediaQuery>

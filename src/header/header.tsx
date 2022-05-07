@@ -1,6 +1,6 @@
 import React from 'react'
 import { MediaQuery, Group, Divider, Burger } from '@mantine/core'
-import { BrandGithub } from 'tabler-icons-react'
+import BrandGithub from 'tabler-icons-react/dist/icons/brand-github'
 import i18next from 'i18next'
 
 import { ExternalLink } from '../components'
