@@ -83,3 +83,82 @@ entry: './path/to/your/main/file'
 ```tsx
 playground: './path/to/your/playground/main/file'
 ```
+- theme - file with object with dark and light objects
+```tsx
+// value in config file
+theme: './path/to/your/config/file'
+
+// object in theme file
+const THEMES = {
+    dark: {
+        coolColorTokenPrimary: '#FFFFF',
+        coolColorTokenSecondary: '#1E1E1E',
+    },
+    light: {
+        coolColorTokenPrimary: '#000000',
+        coolColorTokenSecondary: '#0E0E0E0',
+    }
+}
+// ⚠️ only default export
+export default THEMES
+```
+- plugins - you can add some webpack plugins
+```tsx
+import WebpackNotifierPlugin from 'webpack-notifier'
+
+plugins: [
+    new WebpackNotifierPlugin({
+        title: 'Wooow i can add any plugins 🥳',
+        emoji: true
+    })
+]
+```
+- output - path where will collect the files after build
+```tsx
+output: 'target/temp'
+```
+- storybookContext - see _Storybook directory_ section
+- navigation - your docs navigation
+    - link - link to docs page
+    ```tsx
+    link: '/cool-link-to-awesome-components'
+    ```
+    - title - document.title, search and sidebar item
+    ```tsx
+    title: 'My cool title 🔥'
+    ```
+    - mdx - path to your mdx file with documentation
+    ```tsx
+    mdx: './path/to/your/documentation/file'
+    ```
+    - component - path to file or files ([glob](https://docs.python.org/3/library/glob.html)) for generate prop table
+    ```tsx
+    component: './path/to/your/cool/component'
+    ```
+    - hidden - flag for hide page from search and sidebar
+    ```tsx
+    hidden: true
+    ```
+    - children - array with same object for nested components for example
+    ```tsx
+    children: [
+        {
+            link: '/another-awesome-component',
+            title: 'Incredible button',
+            mdx: './path/to/your/documentation/file'
+            component: './path/to/your/cool/component'
+            hidden: false
+        }
+    ]
+    ```
+- webpackConfig - you can include your webpack-config. Under the hood it will be merge with [webpack-merge](https://github.com/survivejs/webpack-merge)
+```tsx
+// stub if you don't have webpack-config
+webpackConfig: {}
+
+// or
+import config from './path/to/your/webpack/config'
+
+webpackConfig: config
+
+```

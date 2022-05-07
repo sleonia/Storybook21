@@ -1,5 +1,5 @@
 import React from 'react'
-import { DocsContext } from 'storybook21/src/theme-provider/docs-provider'
+import { Group, Button } from '@mantine/core';
 
 type ButtonColorScheme = 'base' | 'secondary' | 'link' | 'purple' | 'blue' | 'green' | 'skyblue' | 'black' | 'gold' | 'aqua'
 
@@ -25,12 +25,11 @@ export const CoolTsButton = ({
     onClick = () => {},
     color = 'black',
 }: CoolTsButtonProps) => (
-    <DocsContext.Consumer>
-        {({ toggleColorScheme, colorScheme }) => (
-            <button onClick={() => toggleColorScheme()}>
-                Cool ts button with {colorScheme} theme
-            </button>
-        )}
-    </DocsContext.Consumer>
-
+    <Group>
+        <Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>Indigo cyan</Button>
+        <Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }}>Lime green</Button>
+        <Button variant="gradient" gradient={{ from: 'teal', to: 'blue', deg: 60 }}>Teal blue</Button>
+        <Button variant="gradient" gradient={{ from: 'orange', to: 'red' }}>Orange red</Button>
+        <Button variant="gradient" gradient={{ from: '#ed6ea0', to: '#ec8c69', deg: 35 }}>Peach</Button>
+    </Group>
 )

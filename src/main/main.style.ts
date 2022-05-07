@@ -8,6 +8,9 @@ export const useMainStyles = createStyles(() => ({
         padding: '16px 40px',
         '& > ul': {
             marginLeft: '20px'
+        },
+        '& > ul > li > ul': {
+            marginLeft: '20px'
         }
     }
 }))

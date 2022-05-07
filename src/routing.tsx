@@ -14,7 +14,7 @@ const getMDXRoutes = (navigationFlat: Array<NavigationFlat>): Array<JSX.Element 
                 key={navigation.link}
                 path={navigation.link}
                 element={(
-                    <Main>
+                    <Main title={navigation.title}>
                         <Mdx content={navigation.mdx} />
                     </Main>
                 )}

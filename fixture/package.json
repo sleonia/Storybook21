@@ -9,7 +9,7 @@
         "storybook21": "file:../storybook21-0.0.6.tgz"
     },
     "devDependencies": {
-        "prop-types": "15.8.1",
+        "prop-types": "^15.8.1",
         "speed-measure-webpack-plugin": "1.5.0",
         "webpack-notifier": "^1.15.0"
     }

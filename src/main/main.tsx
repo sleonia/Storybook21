@@ -1,11 +1,16 @@
 import React from 'react'
 import type { PropsWithChildren } from 'react'
 import { Paper } from '@mantine/core'
+import { useDocumentTitle } from '@mantine/hooks'
+
+import type { MainProps } from './types'
 
 import { useMainStyles } from './main.style'
 
-export const Main = ({ children }: PropsWithChildren<unknown>): JSX.Element => {
+export const Main = ({ title, children }: PropsWithChildren<MainProps>): JSX.Element => {
     const { classes } = useMainStyles()
+
+    useDocumentTitle(title)
 
     return (
         <main className={classes.main}>

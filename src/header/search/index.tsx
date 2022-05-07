@@ -14,10 +14,18 @@ export const Search = (): JSX.Element => {
 
     const { navigationFlat } = useDataProvider()
 
-    const linkList = useMemo(() => navigationFlat.map(({ link, title }) => ({
-        value: title,
-        link
-    })), [navigationFlat])
+    const linkList = useMemo(
+        () => navigationFlat.reduce<Array<{ value: string; link: string }>>(
+            (acc, { hidden, title, link }) => {
+                if (!hidden) {
+                    acc.push({
+                        value: title,
+                        link
+                    })
+                }
+                return acc
+            }, [])
+        , [navigationFlat])
 
     useHotkeys([[HotKeys.openSearch, (): void => ref.current?.focus()]])
 

@@ -1,9 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Group, Button } from '@mantine/core';
 
-export const CoolJsButton = (props) => {
-    return <button>Cool button</button>
-}
+export const CoolJsButton = (props) => (
+    <Group>
+        <Button color="blue" variant="subtle">Subtle variant</Button>
+        <Button color="gray" variant="light">Light variant</Button>
+        <Button color="pink" variant="filled">Filled variant</Button>
+        <Button color="red" variant="outline">Outline variant</Button>
+        <Button color="indigo" variant="default">Default variant</Button>
+    </Group>
+)
 
 CoolJsButton.propTypes = {
     children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -31,9 +38,5 @@ CoolJsButton.propTypes = {
 }
 
 CoolJsButton.defaultProps = {
-    children: void 0,
-    mode: void 0,
-    color: 'black',
-    colorScheme: 'base',
-    onClick: () => {}
+    title: 'title'
 }

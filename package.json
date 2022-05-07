@@ -67,6 +67,12 @@
     },
     "peerDependencies": {
         "webpack": ">=5",
-        "react": ">=16.8."
+        "react": ">=16.8.x",
+        "react-dom": ">=16.8.x",
+        "@emotion/react": ">=11.7.x",
+        "@emotion/styled": ">=11.6.x",
+        "@mantine/core": ">=4.2.x",
+        "@mantine/hooks": ">=4.2.x",
+        "@mantine/prism": ">=4.2.x"
     }
 }

@@ -14,25 +14,20 @@ import { ALIASES, DIST } from '../../constants'
 import { generateDocumentation } from './generate-documentation'
 
 const DEFAULT_CONFIG = {
-    title: '🌈 Nice title 🌈',
+    title: 'Nice title',
     version: '1.0.0',
     storybookContext: '/storybook'
 }
 
-export const createBaseConfig = async (
-    configPath: string,
-    mode: Exclude<Configuration['mode'], 'none'>
-): Promise<Configuration> => {
-    const { default: configProject } = await import(`${process.cwd()}/${configPath}`) as Record<'default', Config>
+const handleGlobalStyle = (globalStyle?: string): string => {
+    let link = ''
+    let filePath = ''
 
-    let link
-    let filePath
-
-    if (configProject.globalStyle) {
-        if (fs.existsSync(configProject.globalStyle)) {
-            filePath = path.resolve(configProject.globalStyle)
+    if (globalStyle) {
+        if (fs.existsSync(globalStyle)) {
+            filePath = path.resolve(globalStyle)
         }
-        link = filePath ? path.basename(filePath) : configProject.globalStyle
+        link = filePath ? `/${path.basename(filePath)}` : globalStyle
     }
 
     if (filePath) {
@@ -42,6 +37,26 @@ export const createBaseConfig = async (
             })
         )
     }
+
+    return link
+}
+
+const handleFavicon = (): void => {
+    config.plugins?.push(
+        new CopyPlugin({
+            patterns: [{ from: path.resolve(__dirname, '../assets/favicon.ico') }]
+        })
+    )
+}
+
+export const createBaseConfig = async (
+    configPath: string,
+    mode: Exclude<Configuration['mode'], 'none'>
+): Promise<Configuration> => {
+    const { default: configProject } = await import(`${process.cwd()}/${configPath}`) as Record<'default', Config>
+
+    const link = handleGlobalStyle(configProject.globalStyle)
+    handleFavicon()
 
     return merge<Configuration>({
         ...config,
@@ -84,6 +99,7 @@ export const createBaseConfig = async (
                             <meta charset="UTF-8" />
                             <title>${configProject.title || DEFAULT_CONFIG.title}</title>
                             ${link ? `<link href="${link}" rel="stylesheet">` : ''}
+                            <link rel="icon" type="image/x-icon" href="/favicon.ico">
                         </head>
                         <body>
                             <div id="root"></div>

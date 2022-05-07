@@ -53,7 +53,7 @@ const config: Config = {
     /** Plugins for webpack */
     plugins: [],
 
-    /** */
+    /** The path where storybook21 will collect the files after build */
     output: 'target/temp',
 
     /** Context for provide mdx navigation */

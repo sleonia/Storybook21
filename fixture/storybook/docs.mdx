@@ -34,7 +34,33 @@ Show examples [ts props](/components/ts-props-example) or [js props](/components
 #### What is `storybook.config.ts`?
 This is config for storybook21. See [this page](/docs/config) for get more info
 
-#### How it works 🛠️?
+#### How to use context in your components?
+storybook21 provide DocsContext wich contains:
+```tsx
+type DocsContextType = {
+    toggleColorScheme: () => void // toggle theme light -> dark and dark -> light
+    colorScheme: 'light' | 'dark'
+}
+```
+you can use it in your components like this:
+```tsx
+import { DocsContext } from 'storybook21/src/theme-provider/docs-provider'
+
+export const ContextExample = () => (
+    <DocsContext.Consumer>
+        {({ toggleColorScheme, colorScheme }) => (
+            <Button
+                variant="outline"
+                onClick={() => toggleColorScheme()}
+                leftIcon={colorScheme === 'dark' ? '🌚' : '🌞'}
+            >
+                {'Do you want to toggle theme?'}
+            </Button>
+        )}
+    </DocsContext.Consumer>
+)
+```
+[see the example](/components/context-example)
 
 <br />
 

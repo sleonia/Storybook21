@@ -1,7 +1,8 @@
 import type { Navigation, Config } from 'storybook21'
 
 import WebpackNotifierPlugin from 'webpack-notifier'
-import SpeedMeasurePlugin from "speed-measure-webpack-plugin";
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
+
 const smp = new SpeedMeasurePlugin();
 
 const navigation: Array<Navigation> = [
@@ -29,18 +30,26 @@ const navigation: Array<Navigation> = [
     },
     {
         link: '/components',
-        title: 'Компоненты',
+        title: 'Components',
         mdx: './components.mdx',
         children: [
             {
-                link: '/ts-props-example',
-                title: 'Cool button with beautiful interface',
-                component: './ts-props-example.tsx'
+                link: '/context-example',
+                title: 'Context example',
+                mdx: './context-example.mdx',
+                component: './context-example.tsx'
             },
             {
                 link: '/js-props-example',
-                title: 'Cool button with beautiful prop-types',
-                component: './js-example.jsx'
+                title: 'Cool prop-types',
+                mdx: './js-props-example.mdx',
+                component: './js-props-example.jsx'
+            },
+            {
+                link: '/ts-props-example',
+                title: 'Cool ts-interface',
+                mdx: './ts-props-example.mdx',
+                component: './ts-props-example.tsx'
             }
         ]
     },
@@ -53,7 +62,7 @@ const navigation: Array<Navigation> = [
 
 const config: Config = {
     /** document.title */
-    title: '🌈 Your nice title 🌈',
+    title: 'fixture',
 
     /** Your app version */
     version: '1.0.0',
@@ -87,7 +96,7 @@ const config: Config = {
         })
     ],
 
-    /** */
+    /** The path where storybook21 will collect the files after build */
     output: 'target/temp',
 
     /** Context for provide mdx navigation */
