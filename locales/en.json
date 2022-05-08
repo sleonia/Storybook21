@@ -18,7 +18,7 @@
     "footer.project.documentation": "Documentation",
     "footer.project.documentation.href": "",
     "footer.project.npm": "Npm",
-    "footer.project.npm.href": "",
+    "footer.project.npm.href": "https://www.npmjs.com/package/storybook21",
     "404.title": "You are lucky 🍀!",
     "404.description": "You find a secret page",
     "404.reward": "Get a reward 🎁",

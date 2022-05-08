@@ -101,7 +101,7 @@ const config: Config = {
     ],
 
     /** The path where storybook21 will collect the files after build */
-    output: 'target/temp',
+    output: 'public',
 
     /** Context for provide mdx navigation */
     storybookContext: './storybook',
