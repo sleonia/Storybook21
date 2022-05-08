@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import i18next from 'i18next'
-import { Prism } from '@mantine/prism';
-import type { PrismSharedProps } from '@mantine/prism/lib/types';
+import { Prism } from '@mantine/prism'
+import type { PrismSharedProps } from '@mantine/prism/lib/types'
 import {
     Button,
     Collapse,

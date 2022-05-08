@@ -1,32 +1,23 @@
 import React, { createContext } from 'react'
 import type { PropsWithChildren } from 'react'
-import {
-    useMantineColorScheme,
-    useMantineTheme
-} from '@mantine/core'
-/* comment: alias for playground components */
-/* eslint-disable-next-line import/no-unresolved */
+import { useMantineColorScheme } from '@mantine/core'
 
-type DocsContextType = {
-    toggleColorScheme: () => void
-    useTheme: typeof useMantineTheme
-    colorScheme: 'light' | 'dark'
-}
+import type { DocsContextType } from './types'
 
 export const DocsContext = createContext<DocsContextType>({
     toggleColorScheme: () => {},
-    useTheme: useMantineTheme,
     colorScheme: 'light'
 })
 
-export const DocsProvider = ({ children }: PropsWithChildren<unknown>) => {
+export const DocsProvider = ({ children }: PropsWithChildren<unknown>): JSX.Element => {
+    /* comment: eslint error */
+    /* eslint-disable-next-line @typescript-eslint/unbound-method */
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 
     return (
         <DocsContext.Provider
             value={{
                 toggleColorScheme,
-                useTheme: useMantineTheme,
                 colorScheme
             }}
         >

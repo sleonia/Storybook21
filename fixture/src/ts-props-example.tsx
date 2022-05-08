@@ -1,5 +1,5 @@
 import React from 'react'
-import { Group, Button } from '@mantine/core';
+import { Group, Button } from '@mantine/core'
 
 type ButtonColorScheme = 'base' | 'secondary' | 'link' | 'purple' | 'blue' | 'green' | 'skyblue' | 'black' | 'gold' | 'aqua'
 
@@ -23,8 +23,8 @@ export const CoolTsButton = ({
     children,
     mode,
     onClick = () => {},
-    color = 'black',
-}: CoolTsButtonProps) => (
+    color = 'black'
+}: CoolTsButtonProps): JSX.Element => (
     <Group>
         <Button variant="gradient" gradient={{ from: 'indigo', to: 'cyan' }}>Indigo cyan</Button>
         <Button variant="gradient" gradient={{ from: 'teal', to: 'lime', deg: 105 }}>Lime green</Button>

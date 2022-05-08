@@ -26,6 +26,7 @@
     "include": [
         "src/**/*",
         "bin/**/*",
+        "fixture/**/*",
         "@types/**/*"
     ],
     "exclude": [
@@ -38,7 +39,7 @@
         "files": true,
         "compilerOptions": {
             "target": "esnext",
-            "module": "commonjs",
+            "module": "commonjs"
         }
     }
 }

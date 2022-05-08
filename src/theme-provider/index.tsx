@@ -1,17 +1,18 @@
 import React from 'react'
 import type { PropsWithChildren } from 'react'
-import { ColorSchemeProvider, MantineProvider} from '@mantine/core'
+import { ColorSchemeProvider, MantineProvider } from '@mantine/core'
 /* comment: alias for playground components */
 /* eslint-disable-next-line import/no-unresolved */
 import libraryTheme from '@storybook21-aliases/libraryTheme'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import type { ColorScheme } from '@mantine/core'
+
 import { HotKeys } from '../hotkeys'
 import { THEMES } from '../constants'
-import type { ColorScheme } from '@mantine/core'
+
 import { DocsProvider } from './docs-provider'
 
-export const ThemeWrapper = ({ children }: PropsWithChildren<unknown>) => {
-
+export const ThemeWrapper = ({ children }: PropsWithChildren<unknown>): JSX.Element => {
     const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
         key: 'mantine-color-scheme',
         defaultValue: THEMES.light,

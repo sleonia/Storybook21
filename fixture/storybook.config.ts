@@ -1,9 +1,8 @@
 import type { Navigation, Config } from 'storybook21'
-
 import WebpackNotifierPlugin from 'webpack-notifier'
-import SpeedMeasurePlugin from 'speed-measure-webpack-plugin';
+import SpeedMeasurePlugin from 'speed-measure-webpack-plugin'
 
-const smp = new SpeedMeasurePlugin();
+const smp = new SpeedMeasurePlugin()
 
 const navigation: Array<Navigation> = [
     {
@@ -56,7 +55,7 @@ const navigation: Array<Navigation> = [
     {
         link: '/plans',
         title: 'Plans',
-        mdx: './plans.mdx',
+        mdx: './plans.mdx'
     },
     {
         link: '/mystery-page',
@@ -88,7 +87,7 @@ const config: Config = {
     playground: './playground/index.tsx',
 
     /** You can provide custom theme-tokens for your project
-     * 
+     *
      * ℹ️ Use only default export
     */
     theme: './theme.ts',

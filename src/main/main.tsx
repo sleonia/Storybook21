@@ -4,7 +4,6 @@ import { Paper } from '@mantine/core'
 import { useDocumentTitle, useMediaQuery } from '@mantine/hooks'
 
 import type { MainProps } from './types'
-
 import { useMainStyles } from './main.style'
 
 export const Main = ({ title, children }: PropsWithChildren<MainProps>): JSX.Element => {

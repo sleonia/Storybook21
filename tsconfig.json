@@ -26,12 +26,12 @@
     "include": [
         "src/**/*",
         "bin/**/*",
+        "fixture/**/*",
         "@types/**/*"
     ],
     "exclude": [
         "node_modules",
-        "**/*.spec.tsx",
-        "**/*/storybook.config.ts"
+        "**/*.spec.tsx"
     ],
     "ts-node": {
         "transpileOnly": true,

@@ -1,9 +1,9 @@
 import React, { useRef, useMemo } from 'react'
+import i18next from 'i18next'
 import { useNavigate } from 'react-router-dom'
 import { useHotkeys } from '@mantine/hooks'
 import { Autocomplete, Kbd, MediaQuery } from '@mantine/core'
 import SearchIcon from 'tabler-icons-react/dist/icons/search'
-import i18next from 'i18next'
 
 import { HotKeys } from '../../hotkeys'
 import { useDataProvider } from '../../data-provider/provider'

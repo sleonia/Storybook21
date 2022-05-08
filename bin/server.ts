@@ -21,6 +21,8 @@ export const runServer = async ({
     const freePort = await checkPort(port)
     const baseConfig = await createBaseConfig(configPath, mode)
 
+    /* comment: baseConfig.output always be */
+    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion */
     baseConfig.output!.publicPath = '/'
 
     const compiler = webpack(baseConfig)

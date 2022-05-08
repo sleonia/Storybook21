@@ -49,6 +49,8 @@ const handleFavicon = (): void => {
     )
 }
 
+/* comment: complexity is in normal */
+/* eslint-disable-next-line complexity */
 export const createBaseConfig = async (
     configPath: string,
     mode: Exclude<Configuration['mode'], 'none'>
@@ -71,10 +73,7 @@ export const createBaseConfig = async (
                 [ALIASES.library]: path.resolve(process.cwd(), configProject.entry || ''),
                 [ALIASES.playground]: path.resolve(process.cwd(), configProject.playground || ''),
                 cwd: path.resolve(process.cwd()),
-                // FIXME
-                [ALIASES.libraryTheme]: configProject.theme
-                    ? path.resolve(process.cwd(), configProject.theme)
-                    : ''
+                [ALIASES.libraryTheme]: path.resolve(process.cwd(), configProject.theme || '')
             }
         },
         plugins: [
@@ -108,6 +107,5 @@ export const createBaseConfig = async (
               `
             })
         ]
-    }, configProject.webpackConfig || {}
-    )
+    }, configProject.webpackConfig || {})
 }
