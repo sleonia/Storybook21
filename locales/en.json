@@ -11,7 +11,7 @@
     "sidebar.close.title": "Close",
     "footer.about.title": "About",
     "footer.about.contribute": "Contribute",
-    "footer.about.contribute.href": "",
+    "footer.about.contribute.href": "https://github.com/sleonia/Storybook21/issues",
     "footer.community.title": "Community",
     "footer.community.follow-me-github": "Follow on Github",
     "footer.project.title": "Project",

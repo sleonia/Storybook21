@@ -16,7 +16,7 @@
     "types": "./@types/index.d.ts",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sleonia/Storybook21.git"
+        "url": "https://github.com/sleonia/Storybook21"
     },
     "author": "nikita.dontsov@yahoo.com",
     "license": "ISC",
