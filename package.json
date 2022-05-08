@@ -1,6 +1,6 @@
 {
     "name": "storybook21",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Open source tool for developing UI components in isolation for React",
     "bin": {
         "storybook21": "./bin/storybook.ts"
