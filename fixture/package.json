@@ -6,7 +6,7 @@
         "build:storybook": "npx storybook21 build --config=storybook.config.ts --mode=production"
     },
     "dependencies": {
-        "storybook21": "^0.1.0"
+        "storybook21": "latest"
     },
     "devDependencies": {
         "@types/speed-measure-webpack-plugin": "1.3.4",
